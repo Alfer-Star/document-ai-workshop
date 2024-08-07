@@ -1,7 +1,7 @@
 # document-ai-workshop
-
+Das hier iat das Repository zu einen Workshop.
 **GOAL** Wir werden eine [Retrieval Augmented Generation (RAG)](https://python.langchain.com/v0.2/docs/tutorials/rag/) App in Langchain bauen.  
-Als zusätzliche funktioenen sind geplant
+Als zusätzliche Funktionen sind geplant
 - Chat mit Dokumenten
 - Chat Historie
 - Gradio Chat Interface   
@@ -13,8 +13,10 @@ Install Python 3.10:
 
 Install [miniconda](https://docs.anaconda.com/miniconda/miniconda-install/) (Package Manager for Data Science Packages)
 
-Setup Virtual Environment in terminal :  
+Setup Virtual Environment (venv) in terminal :  
 ```python -m venv documentai```
+
+Setzt in Python Tab in VS Code die angelegte venv als Asufühurngsenvironnment.
 
 ## Einführung 
 Kurze nach erzählung dr Workshop einfühunrg
