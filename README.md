@@ -52,6 +52,8 @@ Und dann wären da noch die [LLM Konfigurations-Hyperparameter](https://learnpro
 
 ### Langchain: 
 
+### Gradio: Simple Web UI for via Python Commands for Ai interaction
+[Create a Chatbot with Gradio](https://www.gradio.app/guides/creating-a-chatbot-fast#using-your-chatbot-via-an-api)
 
 ### Prompt Techniken: Wie interagiere ich effektiv mit der AI
 Die Webseite [learnprompting.org](https://learnprompting.org/de/docs) erklärt wie Prompting funktioniert und stellt Ansätze dar wie man der KI aus der Perspektive der Prompt Eingabe bessere Ergebnisse entlocken kann. 
