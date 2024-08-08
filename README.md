@@ -63,10 +63,11 @@ Und dann wären da noch die [LLM Konfigurations-Hyperparameter](https://learnpro
 ### Gradio: Simple Web GUI for via Python Commands for Ai interaction
 [Create a Chatbot with Gradio](https://www.gradio.app/guides/creating-a-chatbot-fast#using-your-chatbot-via-an-api)
 
-[ERgänze Multimodale features zum Interface Interface](https://www.gradio.app/guides/creating-a-chatbot-fast#add-multimodal-capability-to-your-chatbot) zum Beispiel File Upload
+[Ergänze Multimodale features zum Interface](https://www.gradio.app/guides/creating-a-chatbot-fast#add-multimodal-capability-to-your-chatbot) zum Beispiel File Upload
 
 ### Running Local LLM with Ollama
 Abhängigkeiten bereits installiert.
+
 
 1. Install Ollama: https://ollama.com/download 
 2. [Browse Models](https://ollama.com/library) for your use Case or use a recommendation model
@@ -75,7 +76,9 @@ Abhängigkeiten bereits installiert.
 5. Run ``python run_ai_ollama_model.py``
 
 
+[Anleitung Chat Einrichtung](https://python.langchain.com/v0.2/docs/integrations/chat/ollama/)
 [Multi Modal Support](https://python.langchain.com/v0.2/docs/integrations/llms/ollama/#multi-modal)
+[Using Model Tools (if exist)](https://python.langchain.com/v0.2/docs/integrations/chat/ollama/#tool-calling)
 
 ### Recommendations
 
@@ -86,6 +89,12 @@ Abhängigkeiten bereits installiert.
 ## Prompt Techniken: Wie interagiere ich effektiv mit der AI
 Die Webseite [learnprompting.org](https://learnprompting.org/de/docs) erklärt wie Prompting funktioniert und stellt Ansätze dar wie man der KI aus der Perspektive der Prompt Eingabe bessere Ergebnisse entlocken kann. 
 
+### Few Shot Prompting
+[Was ist few Shot Prompting?](https://learnprompting.org/de/docs/basics/few_shot)
+In der Praxis dieses Workshops werden wir Few Shot Prompting verwenden, um in dem System Prompt dem KI Modell einen grobe Situation vorgegen. Im Grunde nur darum geht, dem Modell einige Beispiele für das zu zeigen bzw. Anweisungen zeigen (sogenannte Shots), was es tun soll.
+[Few Shot Prompting in Langchain](https://python.langchain.com/v0.2/docs/how_to/structured_output/#few-shot-prompting)
+
+### Rollen Prompting
 
 
 
