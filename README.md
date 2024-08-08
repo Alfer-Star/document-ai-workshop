@@ -15,12 +15,19 @@ Install Ollama (**only for local AI Models**, needs a good processor or a graphi
 
 ~~Install [miniconda](https://docs.anaconda.com/miniconda/miniconda-install/) (Package Manager for Data Science Packages)~~
 
-Setup Virtual Environment (venv) in terminal :  
-```python -m venv documentai```
+Folgendes Schritte musst du im Terminal ausführen, dabei solltest du dich im Projekt Directory befinden
+![correct_directory](assets/terminal_project_directory.PNG)
 
-Setzt in Python Tab in VS Code die angelegte venv als Ausführngsenvironment.
+Setup Virtual Environment (venv) in terminal ():  
+```python -m venv documentai```  
+Hier werden wir die Pakete in ein abgeschirmten Umgebung installieren.  
+Aktiviere das um die Pakete nutzen zu können. Das kannst du in der Python Tab machen.  
+Setzte bitte in Python Tab in VS Code die angelegte venv als Ausführungsenvironment, damit du Python Scipte in VSCode über das Play Symbol im venv ausführen kannst.  
+![setvenv](assets/correct_venv.PNG)  
+Hier kannst du auch einen Terminal in dem venv öffnen  
+![alt text](assets/terminal_vnv.PNG)
 
-Installiere benötigte Abhängigkeiten via:
+Installiere benötigte Abhängigkeiten mit dem Befehl:
 `pip install -r requirements.txt`
 
 ## Einführung 
