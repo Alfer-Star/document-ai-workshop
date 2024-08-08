@@ -9,14 +9,19 @@ Als zusätzliche Funktionen sind geplant
 
 ## Environment Setup
 
-Install Python 3.10: 
+Install Python 3.10: https://www.python.org/downloads/release/python-31011/ or via [Microsoft Store](https://apps.microsoft.com/detail/9pjpw5ldxlz5?hl=en-US&gl=US)
 
-Install [miniconda](https://docs.anaconda.com/miniconda/miniconda-install/) (Package Manager for Data Science Packages)
+Install Ollama (**only for local AI Models**, needs a good processor or a graphics card)
+
+~~Install [miniconda](https://docs.anaconda.com/miniconda/miniconda-install/) (Package Manager for Data Science Packages)~~
 
 Setup Virtual Environment (venv) in terminal :  
 ```python -m venv documentai```
 
-Setzt in Python Tab in VS Code die angelegte venv als Asufühurngsenvironnment.
+Setzt in Python Tab in VS Code die angelegte venv als Ausführngsenvironment.
+
+Installiere benötigte Abhängigkeiten via:
+`pip install -r requirements.txt`
 
 ## Einführung 
 Kurze nach erzählung dr Workshop einfühunrg
@@ -25,7 +30,7 @@ Kurze nach erzählung dr Workshop einfühunrg
 
 Eine Ai Modell ist Input Output system. Wir gebn Frage ein und es generiert uns de wahrscheinlichste Anwtort auf dieser Basis. Im Grunde kennt man es aus der Mathematik: Du hast eine Function gibst eine Eingabe in die Paramter, die Funktion führt eine Operation aus und du erhälst das Ergebnis
 
-TODO: Diagra wie funktioniert KI
+TODO: Diagramm wie funktioniert KI
 
 Die Eingabe an die KI nennt man Prompt.
 
@@ -49,17 +54,37 @@ Und dann wären da noch die [LLM Konfigurations-Hyperparameter](https://learnpro
 
  Note that OpenAI charges you for each prompt you submit through these embeds. If you have recently created a new account, you should have 3 months of free credits. If you have run out of credits, don't worry, since using these models is very cheap. ChatGPT only costs about $0.02 for every seven thousand words you generate. from [learnprompting.org](https://learnprompting.org/de/docs/basics/embeds)
 
-
+## Tools
 ### Langchain: 
 
-### Gradio: Simple Web UI for via Python Commands for Ai interaction
+
+[How Tos](https://python.langchain.com/v0.2/docs/how_to/#tools)
+
+### Gradio: Simple Web GUI for via Python Commands for Ai interaction
 [Create a Chatbot with Gradio](https://www.gradio.app/guides/creating-a-chatbot-fast#using-your-chatbot-via-an-api)
 
-### Prompt Techniken: Wie interagiere ich effektiv mit der AI
+[ERgänze Multimodale features zum Interface Interface](https://www.gradio.app/guides/creating-a-chatbot-fast#add-multimodal-capability-to-your-chatbot) zum Beispiel File Upload
+
+### Running Local LLM with Ollama
+Abhängigkeiten bereits installiert.
+
+1. Install Ollama: https://ollama.com/download 
+2. [Browse Models](https://ollama.com/library) for your use Case or use a recommendation model
+3. Load Model via `ollama pull <model>`
+4. Serve Model locally via `ollama run <model>`
+5. Run ``python run_ai_ollama_model.py``
+
+
+[Multi Modal Support](https://python.langchain.com/v0.2/docs/integrations/llms/ollama/#multi-modal)
+
+### Recommendations
+
+- [Mistral](https://ollama.com/library/mistral)
+- [LLama3 by Meta](https://ollama.com/library/llama3.1)
+- [gemma2 by Gooogle](https://ollama.com/library/gemma2)
+
+## Prompt Techniken: Wie interagiere ich effektiv mit der AI
 Die Webseite [learnprompting.org](https://learnprompting.org/de/docs) erklärt wie Prompting funktioniert und stellt Ansätze dar wie man der KI aus der Perspektive der Prompt Eingabe bessere Ergebnisse entlocken kann. 
-
-
-
 
 
 
