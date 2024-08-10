@@ -1,5 +1,6 @@
-# document-ai-workshop
-Das hier iat das Repository zu einen Workshop.
+# document-ai-workshop (Work in progress)
+Das hier ist das Repository zu einen Workshop.
+TODO: english version
 **GOAL** Wir werden eine [Retrieval Augmented Generation (RAG)](https://python.langchain.com/v0.2/docs/tutorials/rag/) App in Langchain bauen.  
 Als zusätzliche Funktionen sind geplant
 - Chat mit Dokumenten
@@ -12,8 +13,6 @@ Als zusätzliche Funktionen sind geplant
 Install Python 3.10: https://www.python.org/downloads/release/python-31011/ or via [Microsoft Store](https://apps.microsoft.com/detail/9pjpw5ldxlz5?hl=en-US&gl=US)
 
 Install Ollama (**only for local AI Models**, needs a good processor or a graphics card)
-
-~~Install [miniconda](https://docs.anaconda.com/miniconda/miniconda-install/) (Package Manager for Data Science Packages)~~
 
 Folgendes Schritte musst du im Terminal ausführen, dabei solltest du dich im Projekt Directory befinden
 ![correct_directory](assets/terminal_project_directory.PNG)
@@ -31,7 +30,6 @@ Installiere benötigte Abhängigkeiten mit dem Befehl:
 `pip install -r requirements.txt`
 
 ## Einführung 
-Kurze nach erzählung dr Workshop einfühunrg
 
 ### Was ist ein Retrieval Augmented Generation (RAG) App
 
@@ -45,14 +43,15 @@ Die Eingabe an die KI nennt man Prompt.
 
 **Einagbe**: Prompt + System Prompt
 
-**Prompt**: Eingabe des Nutzer, der befejl oder die Aufgabe
+**Prompt**: Eingabe des Nutzer, der Befehl oder die Aufgabe
 
 **System Prompt**: Model Finetuning der RAG App Entwickler & Weitere Eingaben z.B. Dokumente  
-Das Model finetuning kann z.B. Auflagen für das KI Modell sein, auf die Eingabe auf bestimmte Arten zu benatworten oder die Anfragen im Prompt in eine bestimmte Licht zu sehen. Genauso kann man hier versuchen dem Modell bestimmtes Verhalten zu verbieten. 
+Das Model finetuning kann z.B. Auflagen für das KI Modell sein, auf die Eingabe auf bestimmte Arten zu beantworten oder die Anfragen im Prompt in eine bestimmte Licht zu sehen. Genauso kann man hier versuchen dem Modell bestimmtes Verhalten zu verbieten. 
 
-Und dann wären da noch die [LLM Konfigurations-Hyperparameter](https://learnprompting.org/de/docs/basics/configuration_hyperparameters), im Grunde genommen zahlenbasiete Stellschrauben, um die Ausgabe des Modells weiter zu beeinflussen.
+Und dann wären da noch die [LLM Konfigurations-Hyperparameter](https://learnprompting.org/de/docs/basics/configuration_hyperparameters), im Grunde genommen zahlenbasierte Stellschrauben, um die Ausgabe des Modells weiter zu beeinflussen.
 
 ### Get an OpenAI API Key
+TODO: Übersetzen
 - First, navigate to https://platform.openai.com/account/api-keys
 - Then, sign up for or sign into your OpenAI account.
 - Click the Create new secret key button. It will pop up a modal that contains a string of text like this:
@@ -63,8 +62,7 @@ Und dann wären da noch die [LLM Konfigurations-Hyperparameter](https://learnpro
 
 ## Tools
 ### Langchain: 
-
-
+TODO: Ausführlicher
 [How Tos](https://python.langchain.com/v0.2/docs/how_to/#tools)
 
 ### Gradio: Simple Web GUI for via Python Commands for Ai interaction
@@ -86,12 +84,13 @@ Abhängigkeiten bereits installiert.
 [Anleitung Chat Einrichtung](https://python.langchain.com/v0.2/docs/integrations/chat/ollama/)
 [Multi Modal Support](https://python.langchain.com/v0.2/docs/integrations/llms/ollama/#multi-modal)
 [Using Model Tools (if exist)](https://python.langchain.com/v0.2/docs/integrations/chat/ollama/#tool-calling)
+[Tooling with few Shoot Ansatz](https://python.langchain.com/v0.2/docs/how_to/tools_few_shot/)
 
 ### Recommendations
 
 - [Mistral](https://ollama.com/library/mistral)
 - [LLama3 by Meta](https://ollama.com/library/llama3.1)
-- [gemma2 by Gooogle](https://ollama.com/library/gemma2)
+- [gemma2 by Google](https://ollama.com/library/gemma2)
 
 ## Prompt Techniken: Wie interagiere ich effektiv mit der AI
 Die Webseite [learnprompting.org](https://learnprompting.org/de/docs) erklärt wie Prompting funktioniert und stellt Ansätze dar wie man der KI aus der Perspektive der Prompt Eingabe bessere Ergebnisse entlocken kann. 
