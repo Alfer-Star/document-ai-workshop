@@ -35,22 +35,32 @@ Installiere benötigte Abhängigkeiten mit dem Befehl:
 
 ### Was ist ein Retrieval Augmented Generation (RAG) App
 
-Eine Ai Modell ist Input Output system. Wir gebn Frage ein und es generiert uns de wahrscheinlichste Anwtort auf dieser Basis. Im Grunde kennt man es aus der Mathematik: Du hast eine Function gibst eine Eingabe in die Paramter, die Funktion führt eine Operation aus und du erhälst das Ergebnis
+Eine KI Modell ist Input Output System. *Wir geben ein Anweisung und es generiert uns die wahrscheinlichste Lösung.*   
+Im Grunde kennt man es aus der Mathematik: Wie eine mathematische Funktion nimmt das KI Modell Eingabe Parameter entgegen, die Eingabe Parameter werden von der Funktionsoperation (die Rechnung) in das Ergebnis umgewandelt. z.B. ``f(x)=>x+x f(2)=4``.  
+Das ist das grundlegende Prinzip, wie die KI Funktioniert. => RAG
 
-TODO: Diagramm wie funktioniert KI
+Der komplizierte Teil beginnt bei "Funktionsoperation" bei dem KI Modell anzuschauen. Und grundsätzlich ist dieser Vorgang genauso schwer zu erklären, wie wenn du versuchst in das Gehirn deines Nachbarn zu schauen, um dir seine letzte Handlung zu erklären. Wir können nicht so leicht in sein Gehirn schauen und sehen welche Synapsen oder Erfahren durch die eingegeben Reize (sinne: Augen, Ohren usw.) getriggert wurde. Das Synapsen System des Gehirn ist zu Komplex und wir wissen nicht wofür Strukturen stehen. 
 
-Die Eingabe an die KI nennt man Prompt.
+**Um KI Modelle zu erstellen haben wir das menschl. Synapsen System nachgebaut.** Die Wundertechnik schimpft sich Neuronale Netze und gibt es schon seid über 30 Jahren. Tiefer wollen wir hier aber  nicht rein gehen.  
+Wichtig zu verstehen ist, dass wir KI-Modelle, bevor sie Ergebnisse generieren können, wie ein Mensch lernen bzw. Erfahrungen sammeln muss. Diesen Prozess nennt man **KI Training**: Grundsätzlich wird eine KI mit einen gewaltigen Datensatz gefüttert. Daraufhin beginnt das Neuronale Netz sein Training. Es erkennt bzw. lernt iterativ wiederkehrende Strukturen, indem es die Daten auf Eingaben zu einen korrekten Ergebnis rekonstruieren. Die Ausgabe wird immer positiv oder negativ bewertet. Macht es "keine" Fehler mehr ist das Training fertig. (sehr vereinfacht, Lernprozess ist beeinflussbar => Optimierung)
+
+Das hat Implikationen für uns. **Ein Modell ist stark von den Trainingsdaten abhängig und dessen erkennbaren wiederkehrenden Strukturen**. Denn diese reproduziert oder verknüpft sie zu etwas ableitbaren. Im Grunde wieder wie bei einem Menschen. Konfrontierst du ihn mit einer komplexen Aufgabe, die er nicht gelernt hat, so wird er sie nicht erfüllen können oder mit seinen vorhanden Fähigkeiten improvisieren und ein unbefriedigendes Ergebnis liefern.  
+Der Mensch würde hier besser mit mehr Versuchen selbständig besser werden. Das KI Modell müsste durch menschen Hand neu trainiert werden.   
+**KI Modelle können auf spezielle Anwendungsfälle optimiert sein**. ChatGPT ist ein "allgemeines" Multimodales Modell. OpenAi ist bestrebt, das man es für jeden Anwendungsfall einsetzen kann.   
+**Bias ist ein großes Problem**. Trainiere ein Modell mit einen sexistischen Datensatz und du erhälst eine sexistische KI. Vielleicht hast du das ja gewollt um es auf Sexismus zu spezialsieren? Ein anderes Phänomen, besteht ein Datensatz überwiegend aus englischen Daten so wird das Modell besser English als Deutsch verstehen. Auf unserer Welt wird mehr English als Deutsch erstellt, also gibt es da auch mehr Daten zum trainieren.
+
+**Die Eingabe an die KI nennt man Prompt.**
 
 ### Was erhält die KI als Eingabe?
 
-**Einagbe**: Prompt + System Prompt
+**Modell Input** (Prompt): Nutzer Input (Prompt) + System Prompt (+ Prompt Template)
 
-**Prompt**: Eingabe des Nutzer, der Befehl oder die Aufgabe
+**Prompt**: Eingabe des Nutzer, der Befehl oder die Aufgabe, wird häufig als Prompt bezeichnet. Aber technisch gesehen besteht ein Prompt aus allen eingaben inklusive des SystemPrompt. 
 
 **System Prompt**: Model Finetuning der RAG App Entwickler & Weitere Eingaben z.B. Dokumente  
 Das Model finetuning kann z.B. Auflagen für das KI Modell sein, auf die Eingabe auf bestimmte Arten zu beantworten oder die Anfragen im Prompt in eine bestimmte Licht zu sehen. Genauso kann man hier versuchen dem Modell bestimmtes Verhalten zu verbieten. 
 
-Und dann wären da noch die [LLM Konfigurations-Hyperparameter](https://learnprompting.org/de/docs/basics/configuration_hyperparameters), im Grunde genommen zahlenbasierte Stellschrauben, um die Ausgabe des Modells weiter zu beeinflussen.
+Und dann wären da noch die [LLM Konfigurations-Hyperparameter](https://learnprompting.org/de/docs/basics/configuration_hyperparameters). im Grunde genommen zahlenbasierte Stellschrauben, um die Ausgabe des Modells weiter zu beeinflussen. Diese gehören nicht zum Prompt, sind aber auch Eingaben an das Modell
 
 ### Embeddings: Dokumente für das AI Modell aufbereiten
 TODO: beschriebe Was sind Embeddings + Image
