@@ -37,19 +37,24 @@ Installiere benötigte Abhängigkeiten mit dem Befehl:
 
 Eine KI Modell ist Input Output System. *Wir geben ein Anweisung und es generiert uns die wahrscheinlichste Lösung.*   
 Im Grunde kennt man es aus der Mathematik: Wie eine mathematische Funktion nimmt das KI Modell Eingabe Parameter entgegen, die Eingabe Parameter werden von der Funktionsoperation (die Rechnung) in das Ergebnis umgewandelt. z.B. ``f(x)=>x+x f(2)=4``.  
-Das ist das grundlegende Prinzip, wie die KI Funktioniert. => RAG
+Das ist das grundlegende Prinzip, wie die KI Funktioniert. 
 
 Der komplizierte Teil beginnt bei "Funktionsoperation" bei dem KI Modell anzuschauen. Und grundsätzlich ist dieser Vorgang genauso schwer zu erklären, wie wenn du versuchst in das Gehirn deines Nachbarn zu schauen, um dir seine letzte Handlung zu erklären. Wir können nicht so leicht in sein Gehirn schauen und sehen welche Synapsen oder Erfahren durch die eingegeben Reize (sinne: Augen, Ohren usw.) getriggert wurde. Das Synapsen System des Gehirn ist zu Komplex und wir wissen nicht wofür Strukturen stehen. 
 
 **Um KI Modelle zu erstellen haben wir das menschl. Synapsen System nachgebaut.** Die Wundertechnik schimpft sich Neuronale Netze und gibt es schon seid über 30 Jahren. Tiefer wollen wir hier aber  nicht rein gehen.  
 Wichtig zu verstehen ist, dass wir KI-Modelle, bevor sie Ergebnisse generieren können, wie ein Mensch lernen bzw. Erfahrungen sammeln muss. Diesen Prozess nennt man **KI Training**: Grundsätzlich wird eine KI mit einen gewaltigen Datensatz gefüttert. Daraufhin beginnt das Neuronale Netz sein Training. Es erkennt bzw. lernt iterativ wiederkehrende Strukturen, indem es die Daten auf Eingaben zu einen korrekten Ergebnis rekonstruieren. Die Ausgabe wird immer positiv oder negativ bewertet. Macht es "keine" Fehler mehr ist das Training fertig. (sehr vereinfacht, Lernprozess ist beeinflussbar => Optimierung)
 
-Das hat Implikationen für uns. **Ein Modell ist stark von den Trainingsdaten abhängig und dessen erkennbaren wiederkehrenden Strukturen**. Denn diese reproduziert oder verknüpft sie zu etwas ableitbaren. Im Grunde wieder wie bei einem Menschen. Konfrontierst du ihn mit einer komplexen Aufgabe, die er nicht gelernt hat, so wird er sie nicht erfüllen können oder mit seinen vorhanden Fähigkeiten improvisieren und ein unbefriedigendes Ergebnis liefern.  
+Bei einen **Retrieval Augmented Generation (RAG)** ergänzen wir die bereits massive wissensbasis des KI Modells, durch ergänzende eingabe, wie den Dokumenten unserer Firma oder den Suchergebnisse 
+
+Das Training hat Implikationen für uns. **Ein Modell ist stark von den Trainingsdaten abhängig und dessen erkennbaren wiederkehrenden Strukturen**. Denn diese reproduziert oder verknüpft sie zu etwas ableitbaren. Im Grunde wieder wie bei einem Menschen. Konfrontierst du ihn mit einer komplexen Aufgabe, die er nicht gelernt hat, so wird er sie nicht erfüllen können oder mit seinen vorhanden Fähigkeiten improvisieren und ein unbefriedigendes Ergebnis liefern.  
 Der Mensch würde hier besser mit mehr Versuchen selbständig besser werden. Das KI Modell müsste durch menschen Hand neu trainiert werden.   
 **KI Modelle können auf spezielle Anwendungsfälle optimiert sein**. ChatGPT ist ein "allgemeines" Multimodales Modell. OpenAi ist bestrebt, das man es für jeden Anwendungsfall einsetzen kann.   
-**Bias ist ein großes Problem**. Trainiere ein Modell mit einen sexistischen Datensatz und du erhälst eine sexistische KI. Vielleicht hast du das ja gewollt um es auf Sexismus zu spezialsieren? Ein anderes Phänomen, besteht ein Datensatz überwiegend aus englischen Daten so wird das Modell besser English als Deutsch verstehen. Auf unserer Welt wird mehr English als Deutsch erstellt, also gibt es da auch mehr Daten zum trainieren.
+**Bias ist ein großes Problem**. Trainiere ein Modell mit einen sexistischen Datensatz und du erhälst eine sexistische KI. Vielleicht hast du das ja gewollt um es auf Sexismus zu spezialisieren? Ein anderes Phänomen, besteht ein Datensatz überwiegend aus englischen Daten so wird das Modell besser English als Deutsch verstehen. Auf unserer Welt wird mehr English als Deutsch erstellt, also gibt es da auch mehr Daten zum trainieren.
 
-**Die Eingabe an die KI nennt man Prompt.**
+Wir werden hier Sprachmodelle verwenden. KI-modelle, die auf Ein- und Ausgabe von Sprache trainiert worden sind.
+Man spricht bei diesen großen Sprachmodellen von **Large Language Models (LLM)**. 
+
+Die Eingabe an die KI nennt man übrigens Prompt.
 
 ### Was erhält die KI als Eingabe?
 
