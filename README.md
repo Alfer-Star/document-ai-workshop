@@ -2,10 +2,12 @@
 Das hier ist das Repository zu einen Workshop.  
 
 **GOAL** Wir werden eine [Retrieval Augmented Generation (RAG)](https://python.langchain.com/v0.2/docs/tutorials/rag/) App in Langchain bauen.  
-Als zusätzliche Funktionen sind geplant
+Als Funktionen sind geplant
 - Chat mit Dokumenten
 - Chat Historie
-- Gradio Chat Interface   
+- Gradio Graphical Chat Interface
+
+Das Repository stellt eine simple Ki Applikation mit Gradio GUI und eine kurze Einführung in das Thema mit Links. 
 
 TODO: english version  
 ## Environment Setup
@@ -50,6 +52,9 @@ Das Model finetuning kann z.B. Auflagen für das KI Modell sein, auf die Eingabe
 
 Und dann wären da noch die [LLM Konfigurations-Hyperparameter](https://learnprompting.org/de/docs/basics/configuration_hyperparameters), im Grunde genommen zahlenbasierte Stellschrauben, um die Ausgabe des Modells weiter zu beeinflussen.
 
+### Embeddings: Dokumente für das AI Modell aufbereiten
+TODO: beschriebe Was sind Embeddings + Image
+
 ### Get an OpenAI API Key
 TODO: Übersetzen
 - First, navigate to https://platform.openai.com/account/api-keys
@@ -64,6 +69,19 @@ TODO: Übersetzen
 ### Langchain: 
 TODO: Ausführlicher
 [How Tos](https://python.langchain.com/v0.2/docs/how_to/#tools)
+
+#### Langchain Tools
+AI Applikation mit zusätztlichen Fähigkeiten ausrüsten und die Kompetenzen von AI Modellen erweitern, meisten um mit der Welt drumherum zu interagieren.
+[Tools Dokumentation](https://python.langchain.com/v0.1/docs/modules/tools/)
+
+[Langchian Tool Übersicht](https://python.langchain.com/v0.2/docs/integrations/tools/)
+
+TODO: Check 0.2 Api https://python.langchain.com/v0.1/docs/modules/data_connection/
+
+Eigene Tools bauen ist auch möglich.
+
+#### dokumenten einlesen & Embeddings in Langchain
+[Retrieval Chain](https://python.langchain.com/v0.1/docs/modules/data_connection/)
 
 ### Gradio: Simple Web GUI for via Python Commands for Ai interaction
 [Create a Chatbot with Gradio](https://www.gradio.app/guides/creating-a-chatbot-fast#using-your-chatbot-via-an-api)
