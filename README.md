@@ -1,13 +1,13 @@
 # document-ai-workshop (Work in progress)
-Das hier ist das Repository zu einen Workshop.
-TODO: english version
+Das hier ist das Repository zu einen Workshop.  
+
 **GOAL** Wir werden eine [Retrieval Augmented Generation (RAG)](https://python.langchain.com/v0.2/docs/tutorials/rag/) App in Langchain bauen.  
 Als zusätzliche Funktionen sind geplant
 - Chat mit Dokumenten
 - Chat Historie
 - Gradio Chat Interface   
 
-
+TODO: english version  
 ## Environment Setup
 
 Install Python 3.10: https://www.python.org/downloads/release/python-31011/ or via [Microsoft Store](https://apps.microsoft.com/detail/9pjpw5ldxlz5?hl=en-US&gl=US)
@@ -97,7 +97,7 @@ Die Webseite [learnprompting.org](https://learnprompting.org/de/docs) erklärt w
 
 ### Few Shot Prompting
 [Was ist few Shot Prompting?](https://learnprompting.org/de/docs/basics/few_shot)
-In der Praxis dieses Workshops werden wir Few Shot Prompting verwenden, um in dem System Prompt dem KI Modell einen grobe Situation vorgegen. Im Grunde nur darum geht, dem Modell einige Beispiele für das zu zeigen bzw. Anweisungen zeigen (sogenannte Shots), was es tun soll.
+In der Praxis dieses Workshops werden wir Few Shot Prompting verwenden, um in dem System Prompt dem KI Modell einen grobe Situation vorgegen. Im Grunde nur darum geht, dem Modell einige Beispiele für das zu zeigen bzw. Anweisungen zeigen (sogenannte Shots), was es tun soll.  
 [Few Shot Prompting in Langchain](https://python.langchain.com/v0.2/docs/how_to/structured_output/#few-shot-prompting)
 
 ### Rollen Prompting
