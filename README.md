@@ -1,7 +1,7 @@
 # document-ai-workshop (Work in progress)
 Das hier ist das Repository zu einen Workshop.  
 
-**GOAL** Wir werden eine [Retrieval Augmented Generation (RAG)](https://python.langchain.com/v0.2/docs/tutorials/rag/) App in Langchain bauen. In einfachen Worten einen ChatBot, dem wir zusätzliches Wissen zu Verfügung stellen
+**GOAL** Wir werden eine [Retrieval Augmented Generation (RAG)](https://python.langchain.com/v0.2/docs/tutorials/rag/) App in Langchain bauen. In einfachen Worten einen ChatBot, dem wir zusätzliches Wissen zu Verfügung stellen werden.  
 Als Funktionen sind geplant
 - Chat mit Dokumenten (ChatBot der Wissen aus Dokumenten ziehen kann)
 - (Chat Historie) Fertig
@@ -12,9 +12,9 @@ Das Repository stellt eine simple Ki Applikation mit einer GUI zur Verfügung. E
 TODO: english version  
 ## Environment Setup
 
-Install Python 3.10: [python.org](https://www.python.org/downloads/release/python-31011/) or via [Microsoft Store](https://apps.microsoft.com/detail/9pjpw5ldxlz5?hl=en-US&gl=US)
+Install Python 3.10: [python.org](https://www.python.org/downloads/release/python-31011/) oder via [Microsoft Store](https://apps.microsoft.com/detail/9pjpw5ldxlz5?hl=en-US&gl=US)
 
-Folgendes Schritte musst du im Terminal ausführen, dabei solltest du dich im Projekt Directory befinden
+Folgende Schritte musst du im Terminal ausführen, dafür solltest du dich im Projekt Ordner befinden
 ![correct_directory](assets/terminal_project_directory.PNG)
 
 Setup **Virtual Environment (venv)** in terminal:  
@@ -31,12 +31,12 @@ Nun müssen wir das venv *documentai* im terminal aktivieren.
 Installiere benötigte Abhängigkeiten & Pakete mit dem Befehl:
 `pip install -r requirements.txt`
 
-Die KI Applikation ist jetzt fast bereit zum ausführen. Wir haben da zwei Varianten.
+Die KI Applikation ist jetzt fast bereit zum ausführen. Es gibt zwei Varianten:
 - OpenAi Playground basierte Ki Applikation (*Cloud* KI Modell) `python run_ai_gpt_model.py`
 - Ollama basierte Ki Applikation (*lokales* KI Modell) => `python run_ai_ollama_model.py`
 
 ### OpenAi Ki Applikation (Cloud)
-Das KI Modell (ChatGPT) läuft in der Cloud von Open AI. wir sprechen dessen API an.
+Das KI Modell (ChatGPT) läuft in der Cloud von Open AI. Wir sprechen dessen API an.
 Damit das funktioniert müssen wir uns einen Key generieren lassen.
 #### Get an OpenAI API Key
 
@@ -52,20 +52,20 @@ From [learnprompting.org](https://learnprompting.org/de/docs/basics/embeds)
 **Applikation Starten**: 
 `python run_ai_gpt_model.py`
 
-### Ollama Ki Applikation 
-Häufig ist es so, dass man den großen KI Anbietern wie OpenAI nicht vertraut, weil bei KI Interaktionen Daten entstehen, welche die zum trainieren ihres Modells wider verwenden. KI-Modelle kann man auch lokal auf den eigenen Rechner auszuführen und mit ihnen zu interagieren. 
+### Lokales KI-Modelle starten mit Ollama 
+Das Vertrauen in die großen KI Anbietern wie OpenAI ist häufig nicht groß, weil bei KI Interaktionen Daten entstehen, welche wiederum zum trainieren des Modells verwenden können. KI-Modelle kann man auch lokal auf den eigenen Rechner ausführen. 
 
 #### Anforderungen an deinen Computer 
  
 KI Modelle sind sehr Computer Ressourcen hungrig.   
 Grundsätzlich gilt: Die meisten Modelle lassen sich ausführen, wenn dein Computer eine NVIDIA Grafikarte verbaut hat.
-Sonst gilt für Modelle kleine Modelle der Größe 7 Mrd. Parameter (7B) 
+Sonst gilt für kleine Modelle der Größe 7 Mrd. Parameter (7B): 
 - Guter Prozessor (Intel i7), sonst generiert die KI möglicherweise ein Wort in 30s 
-- Großer Arbeitsspeicher (RAM) (Minimum 8GB, besser 16 und 32 GB); KI-modelle werden in den RAM geladen, ein 8GB großes Modell lässt sich nicht 8GG RAM laden, kein Platz; selbst 4Gb sind dann schon kritisch.
-Ressourcen hunger steigt mit der Größe des Modells. Es gilt Llama3 7B => Kleines Modell, Llama3 70B => großes Modell. 70b steht für 70 Mrd Paramedter. Viele Modelle haben eine große und eine kleine Ausführung, wie Llama3 von Meta.
+- Großer Arbeitsspeicher (RAM) (Minimum 8GB, besser 16 und 32 GB); KI-modelle werden in den RAM geladen, ein 8GB großes Modell lässt sich nicht 8GG RAM laden, kein Platz; selbst 4Gb große Modelle sind dann schon kritisch.
+Ressourcen hunger steigt mit der Größe des Modells. Es gilt Llama3 7B => Kleines Modell, Llama3 70B => großes Modell. 70b steht für 70 Mrd Parameter. Viele Modelle haben eine große und eine kleine Ausführung, wie Llama3 von Meta.
 
 #### Ollama 
-Prominentes Tool um Modelle von der Plattform [HuggingFace](https://huggingface.co) (Die Quelle7Community für KI Modelle, idR. Open Source) auszuführen ist [llama.cpp](https://github.com/ggerganov/llama.cpp). llama.cpp ist aber nicht Anfänger freundlich, daher verwenden wir [Ollama](https://ollama.com). Die gleiche Technologie, jedoch vereinfachte Installation und Konfiguration. Nachteil wir können nur Moddell aus dieser [Liste](https://ollama.com/library) installieren.
+[llama.cpp](https://github.com/ggerganov/llama.cpp) ist ein prominentes Tool um Modelle von der Plattform [HuggingFace](https://huggingface.co) lokal auszuführen (Die Quelle/Community für KI Modelle, idR. Open Source). llama.cpp ist aber nicht Anfänger freundlich, daher verwenden wir [Ollama](https://ollama.com). Die gleiche Technologie, jedoch vereinfachte Installation und Konfiguration. Nachteil wir können nur Moddelle aus dieser [Liste](https://ollama.com/library) installieren.
 
 
 1. Install Ollama: https://ollama.com/download 
@@ -94,41 +94,57 @@ Eine KI Modell ist Input Output System. *Wir geben eine Anweisung und es generie
 Im Grunde kennt man es aus der Mathematik: Wie eine mathematische Funktion nimmt das KI Modell Eingabe Parameter entgegen, die Eingabe Parameter werden von der Funktionsoperation (die Rechnung) in das Ergebnis umgewandelt. z.B. ``f(x)=>x+x f(2)=4``.  
 Das ist das grundlegende Prinzip, wie die KI Funktioniert. 
 
-Grundsätzlich Vorgang wie ein KI Modell zu einem Ergebnis kommt generiert,schwer nachzuvollziehen. Ähnlich wie wenn du versuchst in das Gehirn deines Nachbarn zu schauen, um dir seine letzte Handlung zu erklären. Das Gehirn ist ein ebenso komplexes Modell, das auf die eingegeben Reize (sinne: Augen, Ohren usw.) getriggert wird and antrainiert reagiert.
+Der grundsätzliche Vorgang wie ein KI Modell generiert ist schwer nachzuvollziehen. Ähnlich wie wenn du versuchst in das Gehirn deines Nachbarn zu schauen, um dir seine letzte Handlung zu erklären. Das Gehirn ist ein ebenso komplexes Modell, das auf die eingegeben Reize (Sinne: Augen, Ohren usw.) getriggert wird and antrainiert reagiert.
 
-**Um KI Modelle zu erstellen haben wir das menschl. Gehirn vereinfacht nachgebaut.** Die Wundertechnik schimpft sich Neuronale Netze und gibt es schon seid über 30 Jahren eingesetzt. 
-KI Modelle müssen trainiert werden, bevor sie Ergebnisse generieren könne. Wie ein Mensch lernen bzw. Erfahrungen sammeln muss. Eine KI wird mit einen großen Datensatz trainiert, die zu ihren Anwendungsfall passen. Das Neuronale Netz erkennt bzw. lernt iterativ wiederkehrende Strukturen bzw. Muster. Einfach gesagt erfüllt die Ki Anweisungen aus einen separaten Testdatensatz und konstruiert anfangs chaotisch etwas aus den Trainingsdaten zu einen Ergebnis zusammen. Das Modell lernt indem es für gute Ergebnisse, für schlechte bestraft wird. Auf diese Weise lernt das das Modell, welch Kombinationen gut sind und welch vermieden werden soll. (sehr vereinfacht, Lernprozess ist beeinflussbar => Optimierung)  
-Erreicht man eine Punkt an dem das KI-Modell korrekte Voraussagen erzeugt, ist die Ki fertig trainiert. Es wird vorgetäuschte Intelligenz geschaffen. Das Modell hat gelernt ein Muster im Datensatz zu erkenne und kann deshalb Voraussagen treffen, welche Rückgabe auf die Eingabe erwartete wird.
+**Um KI Modelle zu erstellen haben wir das menschl. Gehirn vereinfacht nachgebaut.** Die Buzzword Techniken sind Neuronale Netze oder DeepLearning. Diese gibt es sogar schon deutlich länger als ChatGPT und Co. Für den Workshop nicht unbedingt relevant, aber hier einmal sehr vereinfacht dargestellt, wie ein KI Modell mit einen Neuornalen Netz und einen Datensatz entsteht. 
+KI Modelle müssen trainiert werden, bevor sie Ergebnisse generieren könne. Wie ein Mensch lernen bzw. Erfahrungen sammeln muss. Eine KI wird mit einen großen Datensatz trainiert, die zu ihren Anwendungsfall passen. Das Neuronale Netz erkennt bzw. lernt iterativ wiederkehrende Strukturen bzw. Muster. Einfach gesagt erfüllt die Ki Anweisungen aus einen separaten Testdatensatz und konstruiert anfangs chaotisch etwas aus den Trainingsdaten zu einen Ergebnis zusammen. Das Modell lernt indem es für gute Ergebnisse belohnt und für schlechte bestraft wird. Auf diese Weise identifiziert es gute Kombinationen und wird versuchen in Zukunft diese zu wählen und schlechte eher zu vermeiden. (sehr vereinfacht, Lernprozess ist beeinflussbar => Optimierung)  
+Erreicht man eine Punkt an dem das KI-Modell korrekte Voraussagen erzeugt, ist die Ki fertig trainiert. Es wird vorgetäuschte Intelligenz geschaffen. Das Modell hat gelernt ein Muster im Datensatz zu erkennen und kann deshalb Voraussagen treffen, welche Rückgabe auf die Eingabe erwartete wird.
+![alt text](assets/neuralnetwork.png)
+[Playground wie funktioniert ein Neuronales Netz](https://playground.tensorflow.org/)
 
-**Ein Modell ist stark von den Trainingsdaten abhängig und dessen erkennbaren wiederkehrenden Strukturen**. Denn diese reproduziert oder verknüpft sie zu etwas ableitbaren. Was die KI nicht kennt kann sie nicht generieren.  
-**KI Modelle können auf spezielle Anwendungsfälle optimiert sein**. ChatGPT ist ein "allgemeines" Multimodales Modell. OpenAi ist bestrebt, das man es für jeden Anwendungsfall einsetzen kann.   
-**Bias ist ein großes Problem**. Trainiere ein Modell mit einen sexistischen Datensatz und du erhältst eine sexistische KI. Vielleicht hast du das ja gewollt um es auf Sexismus zu spezialisieren?   
- **Datensatz bestehen häufig überwiegend aus englischsprachigen Daten**. Folglich wird das Modell besser English als Deutsch "verstehen". Auf unserer Welt wird mehr Daten in englisch als in deutsch erstellt. Demzufolge gibt auch mehr englisch basierte Daten zum trainieren. Bei den meisten großen Modellen (Meta, Google, OpenAI) ist das aber kein Problem mehr. Diese bezeichnet man als oft auch als **multilinguale Modelle**.
+**Ein Modell ist stark von den Trainingsdaten abhängig und dessen erkennbaren wiederkehrenden Strukturen**. Was sich in den Datensatz nicht als Muster zeigt kann sie nicht generieren. Aber sie kann komplexe Muster erkennen, die uns bisher verborgen geblieben sind.  
+**KI Modelle können auf spezielle Anwendungsfälle optimiert sein**. Dadurch generieren sie in ihren Anwendungsfall häufig bessere Ergebnisse als andere Modelle. Beispiel Code generierende KI Modelle. Die großen Modelle wie ChatGPT sind "allgemeine" Modelle. OpenAi ist z.B. bestrebt, dass man ChatGPT es für jeden Anwendungsfall einsetzen kann. Multimodale Modelle wie ChatGPT können zusätzlich zu Text auch Bilder verarbeiten.  
+**Bias ist ein großes Problem**. Trainiere ein Modell mit einen sexistischen Datensatz und du erhältst eine sexistische KI. Vielleicht hast du das ja gewollt?   
+**Datensätze bestehen häufig überwiegend aus englischsprachigen Daten**. Folglich wird das Modell besser English als Deutsch "verstehen". Auf unserer Welt werden mehr Daten in englisch als in deutsch erstellt. Demzufolge trainieren KI-Modelle häufiger englisch basierte Daten. Bei den meisten großen Modellen (Meta, Google, OpenAI) ist das aber kein Problem mehr. Diese bezeichnet man als oft auch als **multilinguale Modelle**.
 
 Wir werden in diesen Workshop Sprachmodelle (text2text) verwenden. KI-modelle, die auf Ein- und Ausgabe von Sprache trainiert worden sind. Man bezeichnet diesen großen Sprachmodellen als **Large Language Models (LLM)**.  Daneben gibt es eine Reihe anderer Arten Ki-Modelle , z.B.welche die Bilder erstellen.
 
 Die Eingabe an die KI nennt man übrigens Prompt.
 
 ### Begriffe: Was erhält die KI als Eingabe? (Prompt)
+![alt text](assets/prompt.png)  
+from [learnprompting.org](https://learnprompting.org/de/docs/basics/prompting)
 
 **Modell Input** (Prompt): Nutzer Input (Prompt) + System Prompt + Prompt Template
 
 **Prompt**: Eingabe des Nutzer, der Befehl oder die Aufgabe für KI, wird häufig als Prompt bezeichnet. Aber technisch gesehen besteht ein Prompt aus allen Eingaben an das KI-Modell. 
 
 **System Prompt**: Modell Finetuning, im Grunde weitere Eingaben textuelle Eingaben. Das können zusätzliche Anweisungen sein, wie das KI-Modell die Nutzer Eingabe verarbeiten soll. z.B. kann man hier eingeben, dass das KI Modell seine Testausgabe wie Yoda aus Stars Wars formulieren soll. Ohne das der Nutzer explizit die Anweisung gibt, wie Yoda das Modell antworten wird.  
-hier kann man auch dem Modell Beispeile geben wi
+Hier kann man dem Modell Beispiele geben, wie es antworten soll.
 
-Und dann wären da noch die [LLM Konfigurations-Hyperparameter](https://learnprompting.org/de/docs/basics/configuration_hyperparameters). im Grunde genommen zahlenbasierte Stellschrauben, um die Ausgabe des Modells weiter zu beeinflussen. Diese gehören nicht zum Prompt, sind aber auch Eingaben an das Modell
+*Prompt Engineering* ist das Ziel Prompts zu erstellen, die optimale Ergebnisse für unsere Aufgabe liefern. (Später mehr dazu)
+
+Und dann wären da noch die [LLM Konfigurations-Hyperparameter](https://learnprompting.org/de/docs/basics/configuration_hyperparameters). Im Grunde genommen zahlenbasierte Stellschrauben, um die Ausgabe des Modells weiter zu beeinflussen. Diese gehören nicht zum Prompt, sind aber auch Eingaben beim Start an das Modell.
 
 ### Retrieval Augmented Generation (RAG) Application
-Was wir bauen werden nennt man in der Dachsprachen RAG Applikation. Eine Obendrauf Erweiterung eines fertig trainierten KI-Modells, zur Optimierung für einen bestimmt.
-Man kann auch sagen bei einem **Retrieval Augmented Generation (RAG)** erweitern wir die bereits massive Wissensbasis des KI Modells, indem wir ihm zusätzlichen Informationen mitgeben. Z.B. indem wir die Eingabe durch die den Dokumenten unserer Firma oder den Suchergebnisse einer Google Search ergänzen.
+Was wir bauen werden nennt man in der Fachsprachen eine RAG Applikation. Eine Obendrauf Erweiterung eines fertig trainierten KI-Modells, zur Optimierung für einen bestimmten Zweck.
+Man kann auch sagen bei einem **Retrieval Augmented Generation (RAG)** erweitern wir die bereits massive Wissensbasis des KI Modells, indem wir ihm zusätzlichen Informationen mitgeben. Ein häufiger Anwendunsgfall die Ki um eine Suchoperation in einer Suchmaschine zu ergänzen. Ein andere ist der Unternehmens ChatBot, welcher mit Dokumenten und Daten der Firma ergänzt wird.
+
+Wir werden so einen ChatBot bauen, der mit Daten und Dokumenten gefüttert wird.
 
 ### Embeddings: Dokumente für das AI Modell aufbereiten
-Ein KI Modell kann nur eine Gewisse Menge an Informationen als Anweisung entgegebn nehmen. 
-TODO: beschriebe Was sind Embeddings + Image
+Ein KI Modell kann nur eine Gewisse Menge an Informationen entgegen nehmen. Daher werden Daten oder Dokumenten noch einmal in eine Vektor basierte Form aufbereitet.  
+![alt text](assets/doc2embeddings.png)  
+Embeddings (deutsch Einbettungen) sind numerische Repräsentationen realer Objekte, die Systeme für künstliche Intelligenz (KI) verwenden, um komplexe Wissensbereiche wie Menschen zu verstehen. Beispielsweise gehen Rechenalgorithmen davon aus, dass der Unterschied zwischen 2 und 3 1 ist, was auf eine enge Beziehung zwischen 2 und 3 im Vergleich zu 2 und 100 hinweist. Daten aus der realen Welt beinhalten jedoch komplexere Zusammenhänge. Ein Vogelnest und eine Löwenhöhle sind beispielsweise analoge Paare, während Tag-Nacht entgegengesetzte Begriffe sind. Einbettungen wandeln reale Objekte in komplexe mathematische Repräsentationen um, die inhärente Eigenschaften und Beziehungen zwischen realen Daten erfassen.
+[From: Erklärung Embeddings](https://aws.amazon.com/de/what-is/embeddings-in-machine-learning/)
 
-## Tools & Technologien
+Die Embeddings lassen wir uns von einen Embedding KI-Modell generieren. Hier ist auch wieder die Sprache des Modells von Bedeutung
+
+Ein weitere Ansatz ist die Daten oder Dokumenten in verschieden Teile zu schneiden. Wir lassen dann die KI entscheiden, welche Schnipsel zum user Input relevant sind relevant. Das passiert in einem Schritt davor und die relevanten Schnipsel werden in dem Prompt ergänzt und an das Modell übergeben.
+
+Um die Details müssen wir uns zum Glück nicht sorgen, dafür stehen uns gut durchdachte Tools zur Verfügung. Schlaue Menschen haben sich für uns um das Problem gekümmert!
+
+## Tools & RAG Technologien
 ### Langchain: 
 TODO: Ausführlicher
 [How Tos](https://python.langchain.com/v0.2/docs/how_to/#tools)
