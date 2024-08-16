@@ -70,15 +70,15 @@ Ressourcen hunger steigt mit der Größe des Modells. Es gilt Llama3 7B => Klein
 
 1. Install Ollama: https://ollama.com/download 
 2. [Browse Models](https://ollama.com/library) for your use Case or use a recommendation model
-3. Load Model herunter via `ollama pull <model>`
-4. Start Modell via `ollama run <model>` (optional)
-5. Run ``python run_ai_ollama_model.py``
+3. Load Model herunter via `ollama pull <model>` (optional)
+4. Start Modell via `ollama run <model>` (lädt auch runter, wenn nicht existent)
+5. Run Ollama KI Application ``python run_ai_ollama_model.py``
 
 #### Modell Empfehlungen
 
-- [Mistral](https://ollama.com/library/mistral)
-- [LLama3 by Meta](https://ollama.com/library/llama3.1)
-- [gemma2 by Google](https://ollama.com/library/gemma2)
+- [Mistral 7B](https://ollama.com/library/mistral) `ollama run mistral` (4GB)
+- [LLama3.1 7B & 70b by Meta](https://ollama.com/library/llama3.1) `ollama run llama3.1` (5GB) oder `ollama run llama3.1:70b` (40GB)
+- [gemma2 9B, 2B, & 27B by Google](https://ollama.com/library/gemma2) `ollama run gemma2` (6GB), `ollama run gemma2:2b` oder `https://ollama.com/library/gemma2:27b` (16GB)
 
 ### Applikation startet eine simple GUI
 Applikation im Terminal starten:  
