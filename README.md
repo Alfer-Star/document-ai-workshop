@@ -22,7 +22,7 @@ Setup **Virtual Environment (venv)** in terminal:
 Hier werden wir die Pakete in ein abgeschirmten Umgebung installieren, dem "venv".
 
 Nun müssen wir das venv *documentai* im terminal aktivieren.
-```activate documentai```  
+```activate documentai``` (Bei Fehler Terminal neustarten)  
 *Wichtig!* Die KI Applikation wird sich nur in der Konsole ausführen lassen, wenn das Venv aktiv ist!
 ![Aktives venv](assets/active_venv.png)  
 (*Alternative*) venv via [VSCode Plugin Python EnvironManager](https://marketplace.visualstudio.com/items?itemName=donjayamanne.python-environment-manager) erstellen & aktivieren  
@@ -128,62 +128,88 @@ Und dann wären da noch die [LLM Konfigurations-Hyperparameter](https://learnpro
 
 ### Retrieval Augmented Generation (RAG) Application
 Was wir bauen werden nennt man in der Fachsprachen eine RAG Applikation. Eine Obendrauf Erweiterung eines fertig trainierten KI-Modells, zur Optimierung für einen bestimmten Zweck.
-Man kann auch sagen bei einem **Retrieval Augmented Generation (RAG)** erweitern wir die bereits massive Wissensbasis des KI Modells, indem wir ihm zusätzlichen Informationen mitgeben. Ein häufiger Anwendunsgfall die Ki um eine Suchoperation in einer Suchmaschine zu ergänzen. Ein andere ist der Unternehmens ChatBot, welcher mit Dokumenten und Daten der Firma ergänzt wird.
+Man kann auch sagen bei einem **Retrieval Augmented Generation (RAG)** erweitern wir die bereits massive Wissensbasis des KI Modells, indem wir ihm zusätzlichen Informationen mitgeben. Ein häufiger Anwendunsgfall die Ki um eine Suchoperation in einer Suchmaschine zu ergänzen. Ein anderer ist der Unternehmens ChatBot, welcher mit Dokumenten und Daten der Firma ergänzt wird.
 
 Wir werden so einen ChatBot bauen, der mit Daten und Dokumenten gefüttert wird.
 
-### Embeddings: Dokumente für das AI Modell aufbereiten
-Ein KI Modell kann nur eine Gewisse Menge an Informationen entgegen nehmen. Daher werden Daten oder Dokumenten noch einmal in eine Vektor basierte Form aufbereitet.  
+### Embeddings: Dokumente für das KI Modell aufbereiten
+Ein KI Modell kann nur eine Gewisse Menge an Informationen entgegen nehmen. Daher werden Daten oder Dokumentn noch einmal in eine Vektor basierte Form aufbereitet.  
 ![alt text](assets/doc2embeddings.png)  
 Embeddings (deutsch Einbettungen) sind numerische Repräsentationen realer Objekte, die Systeme für künstliche Intelligenz (KI) verwenden, um komplexe Wissensbereiche wie Menschen zu verstehen. Beispielsweise gehen Rechenalgorithmen davon aus, dass der Unterschied zwischen 2 und 3 1 ist, was auf eine enge Beziehung zwischen 2 und 3 im Vergleich zu 2 und 100 hinweist. Daten aus der realen Welt beinhalten jedoch komplexere Zusammenhänge. Ein Vogelnest und eine Löwenhöhle sind beispielsweise analoge Paare, während Tag-Nacht entgegengesetzte Begriffe sind. Einbettungen wandeln reale Objekte in komplexe mathematische Repräsentationen um, die inhärente Eigenschaften und Beziehungen zwischen realen Daten erfassen.
 [From: Erklärung Embeddings](https://aws.amazon.com/de/what-is/embeddings-in-machine-learning/)
 
-Die Embeddings lassen wir uns von einen Embedding KI-Modell generieren. Hier ist auch wieder die Sprache des Modells von Bedeutung
+Die Embeddings lassen wir uns von einen Embedding KI-Modell generieren. Hier ist auch wieder die Sprache des Modells von Bedeutung.
 
-Ein weitere Ansatz ist die Daten oder Dokumenten in verschieden Teile zu schneiden. Wir lassen dann die KI entscheiden, welche Schnipsel zum user Input relevant sind relevant. Das passiert in einem Schritt davor und die relevanten Schnipsel werden in dem Prompt ergänzt und an das Modell übergeben.
+Ein weitere Ansatz ist die Daten oder Dokumenten in verschiedene Teile zu schneiden. Wir lassen dann die KI entscheiden, welche Schnipsel zum User Input relevant sind. Das passiert in einem Schritt davor und die relevanten Schnipsel werden in dem Prompt ergänzt und an das Modell übergeben.
 
 Um die Details müssen wir uns zum Glück nicht sorgen, dafür stehen uns gut durchdachte Tools zur Verfügung. Schlaue Menschen haben sich für uns um das Problem gekümmert!
 
 ## Tools & RAG Technologien
 ### Langchain: 
-TODO: Ausführlicher
-[How Tos](https://python.langchain.com/v0.2/docs/how_to/#tools)
+LangChain ist ein Framework für die Entwicklung von Anwendungen, die auf großen Sprachmodellen (LLMs) basieren. 
+Es ist Open Source und bietet in Python und JavaScript eine Reihe von Tools an, die uns für Probleme fertige Lösung präsentiert, sodass wir es nicht selbst implementieren zu müssen.  
+
+Im Folgenden sind Links, die ihr aber nicht durcharbeiten müsst, aber nach Bedarf reinschaun könnt. Googlen ist häufig effizienter.  
+[Langchain](https://python.langchain.com/v0.2/docs/introduction/)  
+[Tutorials](https://python.langchain.com/v0.2/docs/tutorials/)  
+[How To Guides](https://python.langchain.com/v0.2/docs/how_to/)   
+Wichtiger ist es erstmal den nachfolgenden Punkten zu folgen! Die zeigen wie wir unsere RAG bauen.
 
 #### Dokumenten einlesen & Embeddings in Langchain
-
-[Retrieval Chain](https://python.langchain.com/v0.1/docs/modules/data_connection/)
+Dieser Teil erklärt wie wir uns eine RAG bauen bzw. unseren ChatBot um einen Dokumenten Zugang ergänzen.
+Retreiver versorgen unser KI Modell mit der zusätzlichen Wissensbasis an Daten bzw. Dokumenten.  
+Dabei können ist erstmal optional, ob wir die Dokumente in Embeddings (Vektoren) umwandeln und/oder in Schnipsel schneiden. Die Langchain Retriever sind unser Anhaltspunkt.
+[Retrieval Chain v0.1](https://python.langchain.com/v0.1/docs/modules/data_connection/)
+Achtung die Dokumentation ist für Langchain V.0.1. Erklärt aber recht gut das Konzept. Wir verwenden 0.2.
+Die Dokumentation für 0.2. ist knapper und es wird fast nur mit Code Beispielen gearbeitet und weniger ausführlich erklärt.
+[Retriever dokumentation v0.2](https://python.langchain.com/v0.2/docs/integrations/retrievers/)  
+[Embeddinsg Models](https://python.langchain.com/v0.2/docs/integrations/text_embedding/)  
+[Document Loader](https://python.langchain.com/v0.2/docs/integrations/document_loaders/)  
+[Retriever dokumentation How To Guides v0.2](https://python.langchain.com/v0.2/docs/how_to/#retrievers)
 
 #### Langchain Tools
-AI Applikation mit zusätztlichen Fähigkeiten ausrüsten und die Kompetenzen von AI Modellen erweitern, meisten um mit der Welt drumherum zu interagieren.
-[Tools Dokumentation](https://python.langchain.com/v0.1/docs/modules/tools/)
+Langchain Tools rüsten unsere KI Applikation mit zusätztlichen Fähigkeiten aus und erweitern die Kompetenzen von KI Modellen. Meistens um mit der Welt drumherum zu interagieren. [LLMs using tools](https://learnprompting.org/de/docs/advanced_applications/mrkl)  
+Ab hier bewegt ihr euch im Advanced Teil, wenn ihr eure RAG bzw. Dokumenten ChatBot um zusätzliche Fähigkeiten ergänzen wollt.
+[~~Tools Dokumentation v0.1~~](https://python.langchain.com/v0.1/docs/modules/tools/)
+(Auch hier erklärt v0.1 etwas mehr)
+[Langchain Tool Übersicht v0.2](https://python.langchain.com/v0.2/docs/integrations/tools/)
 
-[Langchian Tool Übersicht](https://python.langchain.com/v0.2/docs/integrations/tools/)
+Eigene Tools bauen ist auch möglich, aber ich fürchte das ist etwas komplizierter.  
+Ab diesen Punkt beschäftigt man sich auch mit **KI Agenten Systemen**. KI Agenten sind meistens auf eine Aufgabe spezialiserte KI-Modelle, die Teilaufgaben lösen und ihre Ergebnisse an einen anderen Agenten weitergeben. Zum Zweck eine übergeordnete Aufgabe zu lösen. In diesen Prozess lässt sich der Mensch auch als ein Agent integrieren. Ein beispiel wäre es einen Blogeintrag zu schreiben. 
+[Langgraph](https://langchain-ai.github.io/langgraph/tutorials/introduction/) oder [CrewAI](https://docs.crewai.com)
 
-TODO: Check 0.2 Api https://python.langchain.com/v0.1/docs/modules/data_connection/
-
-Eigene Tools bauen ist auch möglich.
 
 #### Langchain mit Ollama Links
-[Anleitung Chat Einrichtung](https://python.langchain.com/v0.2/docs/integrations/chat/ollama/)
-[Multi Modal Support](https://python.langchain.com/v0.2/docs/integrations/llms/ollama/#multi-modal)
-[Using Model Tools (if exist)](https://python.langchain.com/v0.2/docs/integrations/chat/ollama/#tool-calling)
+Hier ist die Dokumentation zur Ollama Konfiguration.
+[Anleitung Chat Einrichtung](https://python.langchain.com/v0.2/docs/integrations/chat/ollama/)  
+[Multi Modal Support](https://python.langchain.com/v0.2/docs/integrations/llms/ollama/#multi-modal)  
+[Using Model Tools (if exist)](https://python.langchain.com/v0.2/docs/integrations/chat/ollama/#tool-calling)  
 [Tooling with few Shoot Ansatz](https://python.langchain.com/v0.2/docs/how_to/tools_few_shot/)
 
-### Gradio: Simple Web GUI for via Python Commands for Ai interaction
-[Create a Chatbot with Gradio](https://www.gradio.app/guides/creating-a-chatbot-fast#using-your-chatbot-via-an-api)
-
+### Gradio: Simple Web GUI for via Python Commands for AI interactions
+Wenn ihr euren ChatBot Grafische Nutzer Interface (GUI) technisch erweitern wollt:
+[Langchain & Gradio](https://python.langchain.com/v0.2/docs/integrations/tools/gradio_tools/#related)  
+[Create a Chatbot with Gradio](https://www.gradio.app/guides/creating-a-chatbot-fast#using-your-chatbot-via-an-api)  
 [Ergänze Multimodale features zum Interface](https://www.gradio.app/guides/creating-a-chatbot-fast#add-multimodal-capability-to-your-chatbot) zum Beispiel File Upload
 
 
-## Prompt Engeneering: Wie interagiere ich effektiv mit der AI
+## Prompt Engeneering: Wie interagiere ich effektiv mit der KI
 Die Webseite [learnprompting.org](https://learnprompting.org/de/docs) erklärt wie Prompting funktioniert und stellt Ansätze dar wie man der KI aus der Perspektive der Prompt Eingabe bessere Ergebnisse entlocken kann. 
+
+Die Artikel sind kurze Erklärungen. Pickt euch Themen raus die euch weiterhelfen.
 
 ### Few Shot Prompting
 [Was ist few Shot Prompting?](https://learnprompting.org/de/docs/basics/few_shot)
 In der Praxis dieses Workshops werden wir Few Shot Prompting verwenden, um in dem System Prompt dem KI Modell einen grobe Situation vorgegen. Im Grunde nur darum geht, dem Modell einige Beispiele für das zu zeigen bzw. Anweisungen zeigen (sogenannte Shots), was es tun soll.  
 [Few Shot Prompting in Langchain](https://python.langchain.com/v0.2/docs/how_to/structured_output/#few-shot-prompting)
 
-### Rollen Prompting
+### [Rollen Prompting](https://learnprompting.org/de/docs/basics/roles)
+
+### [Techniken Kominieren](https://learnprompting.org/de/docs/basics/combining_techniques)
+
+### [ChatBot Grundlagen](https://learnprompting.org/de/docs/basics/chatbot_basics) & [Priming Chatbots](https://learnprompting.org/de/docs/basics/priming_prompt)
+
+
 
 
 
