@@ -4,7 +4,7 @@ import gradio as gr
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_ollama.llms import OllamaLLM
 
-system_prompt = "You are a helpful assistant that translates {input_language} to {output_language}."
+system_prompt = "You are a helpful assistant."
 
 prompt = ChatPromptTemplate.from_messages(
     [
@@ -16,7 +16,7 @@ prompt = ChatPromptTemplate.from_messages(
     ]
 )
 
-model = OllamaLLM(model="llama3.1", temperature=0,)
+model = OllamaLLM(model="llama3.1")
 
 llm = prompt | model
 
@@ -28,10 +28,13 @@ def predict(message, history):
         history_langchain_format.append(HumanMessage(content=human))
         history_langchain_format.append(AIMessage(content=ai))
     history_langchain_format.append(HumanMessage(content=message))
-    response = llm(history_langchain_format)
+    response = llm.invoke(
+        {
+            "input": history_langchain_format,
+        })
     print("User Question: {message}")
     print("Model Answer:")
     print(response)
-    return response.content
+    return response
 
 gr.ChatInterface(predict).launch()
