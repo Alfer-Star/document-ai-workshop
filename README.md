@@ -167,6 +167,10 @@ Die Dokumentation für 0.2. ist knapper und es wird fast nur mit Code Beispielen
 [Document Loader](https://python.langchain.com/v0.2/docs/integrations/document_loaders/)  
 [Retriever dokumentation How To Guides v0.2](https://python.langchain.com/v0.2/docs/how_to/#retrievers)
 
+#### Langchain Historie
+
+Langchain Historie with Retriever: https://python.langchain.com/v0.2/docs/how_to/qa_chat_history_how_to/#adding-chat-history 
+
 #### Langchain Tools
 Langchain Tools rüsten unsere KI Applikation mit zusätztlichen Fähigkeiten aus und erweitern die Kompetenzen von KI Modellen. Meistens um mit der Welt drumherum zu interagieren. [LLMs using tools](https://learnprompting.org/de/docs/advanced_applications/mrkl)  
 Ab hier bewegt ihr euch im Advanced Teil, wenn ihr eure RAG bzw. Dokumenten ChatBot um zusätzliche Fähigkeiten ergänzen wollt.
