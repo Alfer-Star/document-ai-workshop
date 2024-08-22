@@ -20,8 +20,6 @@ model = OllamaLLM(model="llama3.1")
 
 llm = prompt | model
 
-## end TODO: make it work with gradio
-
 def predict(message, history):
     history_langchain_format = []
     for human, ai in history:
@@ -32,7 +30,8 @@ def predict(message, history):
         {
             "input": history_langchain_format,
         })
-    print("User Question: {message}")
+    print("User Question:")
+    print(message)
     print("Model Answer:")
     print(response)
     return response
