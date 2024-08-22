@@ -1,4 +1,4 @@
-# document-ai-workshop (Work in progress)
+# document-ai-workshop
 Das hier ist das Repository zu einen Workshop.  
 
 **GOAL** Wir werden eine [Retrieval Augmented Generation (RAG)](https://python.langchain.com/v0.2/docs/tutorials/rag/) App in Langchain bauen. In einfachen Worten einen ChatBot, dem wir zusätzliches Wissen zu Verfügung stellen werden.  
