@@ -1,15 +1,15 @@
 # document-ai-workshop
-Das hier ist das Repository zu einen Workshop.  
+Das hier ist das Repository zum Document-AI-Workshop.  
 
-**GOAL** Wir werden eine [Retrieval Augmented Generation (RAG)](https://python.langchain.com/v0.2/docs/tutorials/rag/) App in Langchain bauen. In einfachen Worten einen ChatBot, dem wir zusätzliches Wissen zu Verfügung stellen werden.  
-Als Funktionen sind geplant
+**ZIEL:** Wir werden eine [Retrieval Augmented Generation (RAG)](https://python.langchain.com/v0.2/docs/tutorials/rag/) App in Langchain bauen. In einfachen Worten einen ChatBot, dem wir zusätzliches Wissen zu Verfügung stellen werden.  
+Als Funktionen sind geplant:
 - Chat mit Dokumenten (ChatBot der Wissen aus Dokumenten ziehen kann)
 - (Chat Historie) Fertig
 - (Graphical Chat Interface) Fertig
 
-Das Repository stellt eine simple Ki Applikation mit einer GUI zur Verfügung. Es eine Anleitung zum Setup und eine kurze Einführung in das Thema mit Links. 
+Das Repository stellt eine simple Ki Applikation mit einer GUI zur Verfügung. 
+Es beinhaltet eine Anleitung zum Setup und eine kurze Einführung in das Thema mit Links.
 
-TODO: english version  
 ## Environment Setup
 
 Install Python 3.10: [python.org](https://www.python.org/downloads/release/python-31011/) oder via [Microsoft Store](https://apps.microsoft.com/detail/9pjpw5ldxlz5?hl=en-US&gl=US)
@@ -31,9 +31,18 @@ Nun müssen wir das venv *documentai* im terminal aktivieren.
 Installiere benötigte Abhängigkeiten & Pakete mit dem Befehl:
 `pip install -r requirements.txt`
 
-Die KI Applikation ist jetzt fast bereit zum ausführen. Es gibt zwei Varianten:
-- OpenAi Playground basierte Ki Applikation (*Cloud* KI Modell) `python run_ai_gpt_model.py`
+Die KI Applikation ist jetzt fast bereit zum ausführen. Es gibt drei Varianten:
+- Azure OpenAI basierte KI Applikation (nutzt GPT-4o-mini - Key gibt es von uns) `python run_ai_azure_open_ai_model.py`
+- OpenAi Playground basierte Ki Applikation (KI Modell von OpenAI - Hier brauchst du einen eigenen Key) `python run_ai_gpt_model.py`
 - Ollama basierte Ki Applikation (*lokales* KI Modell) => `python run_ai_ollama_model.py`
+
+### Azure OpenAI KI Applikation
+Das Modell (GPT-4o-mini) läuft in der Cloud von Azure OpenAI. Dieses sprechen wir über eine API an. Damit das Modell genutzt werden kann,
+muss im gleichen Verzeichnis, wo die auszuführende Python-Datei liegt, eine neue Datei erstellt werden '.env'.
+Hier müssen vier Einträge gemacht werden. Diese Daten/Informationen gibt es im Workshop von uns.
+
+**Applikation Starten**:
+`python run_ai_azure_open_ai_model.py`
 
 ### OpenAi Ki Applikation (Cloud)
 Das KI Modell (ChatGPT) läuft in der Cloud von Open AI. Wir sprechen dessen API an.
@@ -127,10 +136,16 @@ Hier kann man dem Modell Beispiele geben, wie es antworten soll.
 Und dann wären da noch die [LLM Konfigurations-Hyperparameter](https://learnprompting.org/de/docs/basics/configuration_hyperparameters). Im Grunde genommen zahlenbasierte Stellschrauben, um die Ausgabe des Modells weiter zu beeinflussen. Diese gehören nicht zum Prompt, sind aber auch Eingaben beim Start an das Modell.
 
 ### Retrieval Augmented Generation (RAG) Application
-Was wir bauen werden nennt man in der Fachsprachen eine RAG Applikation. Eine Obendrauf Erweiterung eines fertig trainierten KI-Modells, zur Optimierung für einen bestimmten Zweck.
-Man kann auch sagen bei einem **Retrieval Augmented Generation (RAG)** erweitern wir die bereits massive Wissensbasis des KI Modells, indem wir ihm zusätzlichen Informationen mitgeben. Ein häufiger Anwendunsgfall die Ki um eine Suchoperation in einer Suchmaschine zu ergänzen. Ein anderer ist der Unternehmens ChatBot, welcher mit Dokumenten und Daten der Firma ergänzt wird.
-
-Wir werden so einen ChatBot bauen, der mit Daten und Dokumenten gefüttert wird.
+Was wir bauen werden nennt man in der Fachsprachen eine RAG Applikation. Eine RAG Applikation ist eine Erweiterung eines vortrainierten KI-Modells, um es für spezifische Aufgaben zu optimieren.
+Bei einer **Retrieval Augmented Generation (RAG)** erweitern wir die bereits massive Wissensbasis des KI Modells, indem wir diesem zusätzliche Informationen bereitstellen. Zu den häufigsten Anwendungsfällen gehört die Ergänzung der KI um eine Suchfunktion in einer Suchmaschine oder die Entwicklung von Unternehmens-ChatBots, die mit den Dokumenten und Daten eines Unternehmens gefüttert werden.
+Wir werden einen solchen ChatBot entwickeln, der mit Daten und Dokumenten des Unternehmens gespeist wird.
+![img_1.png](img_1.png)
+Das Bild oben veranschaulicht den grundlegenden Ablauf einer RAG Applikation:
+1. Dokumente vorbereiten: Zunächst werden interne Dokumente des Unternehmens in kleine Stücke (Chunks) aufgeteilt.
+2. Erstellung von Embeddings: Diese Chunks werden dann durch ein Embedding-Modell in Vektoren (Embeddings) umgewandelt.
+3. Speicherung und Abruf: Die erzeugten Vektoren werden in einer Vektordatenbank gespeichert. Wenn ein Prompt eingegangen ist, werden ähnliche Dokumente aus der Vektordatenbank abgerufen.
+4. Erweiterung des Prompts: Die abgerufenen Dokumente werden genutzt, um den ursprünglichen Prompt mit zusätzlichen Informationen anzureichern.
+5. Generierung der Antwort: Der angereicherte Prompt wird an das generative KI-Modell (GenAI-Model) weitergeleitet, welches daraufhin eine optimierte Antwort generiert.
 
 ### Embeddings: Dokumente für das KI Modell aufbereiten
 Ein KI Modell kann nur eine Gewisse Menge an Informationen entgegen nehmen. Daher werden Daten oder Dokumentn noch einmal in eine Vektor basierte Form aufbereitet.  
