@@ -88,7 +88,7 @@ Gradio Web GUI öffnen: http://localhost:7860
 
 ## Einführung KI
 
-### Was sich Ki-modelle und wie entsteht diese künstliche "Intelligenz"
+### Was sind Ki-modelle und wie entsteht diese künstliche "Intelligenz"
 
 Eine KI Modell ist Input Output System. *Wir geben eine Anweisung und es generiert uns ein Ergebnis.*   
 Im Grunde kennt man es aus der Mathematik: Wie eine mathematische Funktion nimmt das KI Modell Eingabe Parameter entgegen, die Eingabe Parameter werden von der Funktionsoperation (die Rechnung) in das Ergebnis umgewandelt. z.B. ``f(x)=>x+x f(2)=4``.  
