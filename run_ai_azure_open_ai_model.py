@@ -22,7 +22,7 @@ llm = AzureChatOpenAI(
 )
 structured_llm = llm.with_structured_output(AIMessage)
 
-system_prompt = """Bitte antworte mir immer auf deutsch."""
+system_prompt = """Bitte antworte mir immer auf deutsch. Bleibe immer höfflich und professionell."""
 prompt = ChatPromptTemplate.from_messages([("system", system_prompt), ("human", "{input}")])
 few_shot_structured_llm = prompt | structured_llm
 
