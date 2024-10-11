@@ -22,21 +22,7 @@ llm = AzureChatOpenAI(
 )
 structured_llm = llm.with_structured_output(AIMessage)
 
-system_prompt = """You are a good AI. You help solving my task or question!
-
-Question: What is 1+1?
-Answer: the Answer is 2.
-
-Question: Which color has my blue cat?
-Answer: The color of your cat is blue.
-
-Question: Who won the Battle of Thermopylae in greece during the Persian Wars in 460 BC?
-Answer: The battle was fought between the Persian empire and a coalition of greek city states. The Persian empire won.
-
-Question: Who was the first King of Persia?
-Answer: The first King and founder of Persia was Kyros II.
-"""
-
+system_prompt = """Bitte antworte mir immer auf deutsch."""
 prompt = ChatPromptTemplate.from_messages([("system", system_prompt), ("human", "{input}")])
 few_shot_structured_llm = prompt | structured_llm
 
@@ -47,7 +33,7 @@ def predict(message, history):
         history_langchain_format.append(HumanMessage(content=human))
         history_langchain_format.append(AIMessage(content=ai))
     history_langchain_format.append(HumanMessage(content=message))
-    response = llm.invoke(history_langchain_format)
+    response = few_shot_structured_llm.invoke(history_langchain_format)
     print(f"User Question: {message}")
     print("Model Answer: " + response.content)
     return response.content
