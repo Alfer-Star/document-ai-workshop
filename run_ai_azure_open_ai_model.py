@@ -1,10 +1,13 @@
 import gradio as gr
 from dotenv import load_dotenv
 import os
+from utils import loadSingleMarkdownDocument
 
 from langchain_core.messages import HumanMessage, AIMessage
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_openai import AzureChatOpenAI
+
+
 
 load_dotenv()
 
@@ -20,11 +23,23 @@ llm = AzureChatOpenAI(
     openai_api_version=api_version,
     temperature=1,
 )
+
 structured_llm = llm.with_structured_output(AIMessage)
 
-system_prompt = """Bitte antworte mir immer auf deutsch. Bleibe immer höfflich und professionell."""
+system_prompt = """
+Bitte antworte mir immer auf deutsch. Bleibe immer höfflich und professionell.
+
+Bitte beantworte die Frage mit dem gegebenen context. 
+Wenn context keione relevanten Informationen zur Frage enthält, erfinde nichts und sage "Ich weiß die Antwort nicht. :(": 
+<context>
+{context}
+</context>
+"""
 prompt = ChatPromptTemplate.from_messages([("system", system_prompt), ("human", "{input}")])
 few_shot_structured_llm = prompt | structured_llm
+
+
+doc_content = loadSingleMarkdownDocument("SOURCE_DOCUMENT/kyros_ii_persia_history.md")
 
 
 def predict(message, history):
@@ -33,8 +48,13 @@ def predict(message, history):
         history_langchain_format.append(HumanMessage(content=human))
         history_langchain_format.append(AIMessage(content=ai))
     history_langchain_format.append(HumanMessage(content=message))
-    response = few_shot_structured_llm.invoke(history_langchain_format)
-    print(f"User Question: {message}")
+    historyWithContext =  {
+        "context": doc_content,
+        "input": history_langchain_format,
+    }
+    print(historyWithContext)
+    response = few_shot_structured_llm.invoke(historyWithContext)
+    print("User Question: {message}")
     print("Model Answer: " + response.content)
     return response.content
 
