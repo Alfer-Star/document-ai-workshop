@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 import os
 
 from ollama import embeddings
-from utils import loadDocumentsFromDirectory
+from utils import loadDocumentsFromDirectory, formatDocs
 
 from langchain_core.messages import HumanMessage, AIMessage
 from langchain_core.prompts import ChatPromptTemplate
@@ -63,13 +63,12 @@ embeddings = AzureOpenAIEmbeddings(
     api_key=api_key,
     openai_api_version=api_version,
     temperature=1)
-    
-db = Chroma.from_documents(documents, embeddings)
 
-query = "Was hat Kyros II. erobert?"
-docs = db.similarity_search(query)
-doc_content = docs[0].page_content
-print("Successfull created VectorStore. Text with Kyros II. Conquests" + doc_content[:100])
+# CReates Retriever from Vector Store from https://python.langchain.com/v0.2/docs/how_to/vectorstore_retriever/    
+vectorStore = Chroma.from_documents(documents, embeddings)
+
+retriever = vectorStore.as_retriever()
+
 # Gradio client predict functions, will be executed when User submit action in client
 def predict(message, history):
     history_langchain_format = []
@@ -77,8 +76,12 @@ def predict(message, history):
         history_langchain_format.append(HumanMessage(content=human))
         history_langchain_format.append(AIMessage(content=ai))
     history_langchain_format.append(HumanMessage(content=message))
+
+    # Retrieve docs relevant to user Input and format it to string
+    doc_content = retriever.invoke(message) | formatDocs
+
     historyWithContext =  {
-        "context": doc_content,
+        "context": doc_content  ,
         "input": history_langchain_format,
     }
     print(historyWithContext)
