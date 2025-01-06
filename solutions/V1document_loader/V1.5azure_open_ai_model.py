@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 import os
 
 from langchain_text_splitters import RecursiveCharacterTextSplitter
-from utils import loadSingleMarkdownDocument
+from utils import loadDocumentsFromDirectory, loadSingleMarkdownDocument
 
 from langchain_core.messages import HumanMessage, AIMessage
 from langchain_core.prompts import ChatPromptTemplate
@@ -42,7 +42,7 @@ few_shot_structured_llm = prompt | structured_llm
 
 
 ## doc_content = loadSingleMarkdownDocument("SOURCE_DOCUMENT/kyros_ii_persia_history.md")
-documents = lo
+documents = loadDocumentsFromDirectory("SOURCE_DOCUMENTS")
 #Text Splitter from https://python.langchain.com/v0.2/docs/how_to/recursive_text_splitter/
 text_splitter = RecursiveCharacterTextSplitter(
     chunk_size=1000,
@@ -61,7 +61,7 @@ def predict(message, history):
         history_langchain_format.append(AIMessage(content=ai))
     history_langchain_format.append(HumanMessage(content=message))
     historyWithContext =  {
-        "context": doc_content,
+        "context": texts.pop(),
         "input": history_langchain_format,
     }
     print(historyWithContext)

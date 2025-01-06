@@ -1,8 +1,6 @@
 from typing import List
 from langchain_community.document_loaders import UnstructuredMarkdownLoader
 from langchain_community.document_loaders import DirectoryLoader
-from tomlkit import document
-
 
 def loadGptKey():
     f = open("./my_gpt.key", "r")
@@ -34,7 +32,7 @@ def loadSingleMarkdownDocument(file_path: str):
     return doc_content
 
 
-def formatDocs(doc_list: List[Document]):
+def formatDocs(doc_list: List):
     """
     Formats Docs into Strings
     """
