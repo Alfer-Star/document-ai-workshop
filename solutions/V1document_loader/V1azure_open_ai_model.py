@@ -13,7 +13,7 @@ from langchain_openai import AzureChatOpenAI
 currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
 rootdir = os.path.dirname(os.path.dirname(currentdir))
 sys.path.append(rootdir)
-from utils import loadDocumentsFromDirectory, loadSingleMarkdownDocument  # noqa: E402
+from utils import loadSingleMarkdownDocument  # noqa: E402
 
 
 

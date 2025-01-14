@@ -5,8 +5,6 @@ import inspect
 import gradio as gr
 from dotenv import load_dotenv
 
-from ollama import embeddings
-
 from langchain_core.messages import HumanMessage, AIMessage
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_openai import AzureChatOpenAI, AzureOpenAIEmbeddings
