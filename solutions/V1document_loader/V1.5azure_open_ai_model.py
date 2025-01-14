@@ -1,14 +1,21 @@
+import os
+import sys
+import inspect
+
 import gradio as gr
 from dotenv import load_dotenv
-import os
 
 from langchain_text_splitters import RecursiveCharacterTextSplitter
-from utils import loadDocumentsFromDirectory, loadSingleMarkdownDocument
 
 from langchain_core.messages import HumanMessage, AIMessage
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_openai import AzureChatOpenAI
 
+# Ignoriern: Fügt root Ordner für utils zum sys.path hinzu, damit es iportiert werden kann
+currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
+rootdir = os.path.dirname(os.path.dirname(currentdir))
+sys.path.append(rootdir)
+from utils import loadDocumentsFromDirectory  # noqa: E402
 
 
 load_dotenv()
@@ -42,7 +49,7 @@ few_shot_structured_llm = prompt | structured_llm
 
 
 ## doc_content = loadSingleMarkdownDocument("SOURCE_DOCUMENT/kyros_ii_persia_history.md")
-documents = loadDocumentsFromDirectory("SOURCE_DOCUMENTS")
+documents = loadDocumentsFromDirectory(rootdir + "\\SOURCE_DOCUMENTS")
 #Text Splitter from https://python.langchain.com/v0.2/docs/how_to/recursive_text_splitter/
 text_splitter = RecursiveCharacterTextSplitter(
     chunk_size=1000,
