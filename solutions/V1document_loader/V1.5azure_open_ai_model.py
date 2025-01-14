@@ -49,7 +49,7 @@ few_shot_structured_llm = prompt | structured_llm
 
 
 ## doc_content = loadSingleMarkdownDocument("SOURCE_DOCUMENT/kyros_ii_persia_history.md")
-documents = loadDocumentsFromDirectory(rootdir + "\\SOURCE_DOCUMENTS")
+documents = loadDocumentsFromDirectory("SOURCE_DOCUMENTS")
 #Text Splitter from https://python.langchain.com/v0.2/docs/how_to/recursive_text_splitter/
 text_splitter = RecursiveCharacterTextSplitter(
     chunk_size=1000,

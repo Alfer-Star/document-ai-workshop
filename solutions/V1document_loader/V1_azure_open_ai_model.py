@@ -13,8 +13,8 @@ from langchain_openai import AzureChatOpenAI
 currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
 rootdir = os.path.dirname(os.path.dirname(currentdir))
 sys.path.append(rootdir)
+normalRootDir = str(rootdir).replace("\\", "/")
 from utils import loadSingleMarkdownDocument  # noqa: E402
-
 
 
 load_dotenv()
@@ -43,11 +43,12 @@ Wenn context keine relevanten Informationen zur Frage enthält, erfinde nichts u
 {context}
 </context>
 """
-prompt = ChatPromptTemplate.from_messages([("system", system_prompt), ("human", "{input}")])
+prompt = ChatPromptTemplate.from_messages(
+    [("system", system_prompt), ("human", "{input}")]
+)
 few_shot_structured_llm = prompt | structured_llm
 
-
-doc_content = loadSingleMarkdownDocument("SOURCE_DOCUMENT/kyros_ii_persia_history.md")
+doc_content = loadSingleMarkdownDocument("SOURCE_DOCUMENTS/kyros_ii_persia_history.md")
 
 
 def predict(message, history):
@@ -56,7 +57,7 @@ def predict(message, history):
         history_langchain_format.append(HumanMessage(content=human))
         history_langchain_format.append(AIMessage(content=ai))
     history_langchain_format.append(HumanMessage(content=message))
-    historyWithContext =  {
+    historyWithContext = {
         "context": doc_content,
         "input": history_langchain_format,
     }
