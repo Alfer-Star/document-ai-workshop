@@ -38,10 +38,10 @@ structured_llm = llm.with_structured_output(AIMessage)
 
 
 system_prompt = """
-Bitte antworte mir immer auf deutsch. Bleibe immer höfflich und professionell.
+Bitte antworte mir immer auf deutsch. Bleibe immer höflich und professionell.
 
-Bitte beantworte die Frage mit dem gegebenen context. 
-Wenn context keione relevanten Informationen zur Frage enthält, erfinde nichts und sage "Ich weiß die Antwort nicht. :(": 
+Bitte beantworte die Frage mit dem gegebenen Kontext zwischen "<context></context>". 
+Wenn context keine relevanten Informationen zur Frage enthält, erfinde nichts und sage "Ich weiß die Antwort nicht.". 
 <context>
 {context}
 </context>
