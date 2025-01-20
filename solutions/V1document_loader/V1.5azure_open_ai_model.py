@@ -5,11 +5,11 @@ import inspect
 import gradio as gr
 from dotenv import load_dotenv
 
-from langchain_text_splitters import RecursiveCharacterTextSplitter
-
 from langchain_core.messages import HumanMessage, AIMessage
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_openai import AzureChatOpenAI
+
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 # Ignoriern: Fügt root Ordner für utils zum sys.path hinzu, damit es iportiert werden kann
 currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
