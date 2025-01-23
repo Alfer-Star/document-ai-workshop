@@ -58,7 +58,7 @@ text_splitter = RecursiveCharacterTextSplitter(
     is_separator_regex=False,
 )
 texts = text_splitter.split_documents(documents)
-print("Successfull splitted Documents. Number of Chunks: " + len(texts))
+print("Successfull splitted Documents. Number of Chunks: " + str(len(texts)))
 
 
 def predict(message, history):

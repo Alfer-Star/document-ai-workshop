@@ -15,7 +15,7 @@ def loadDocumentsFromDirectory(dirctory_path="./SOURCE_DOCUMENTS/"):
     """
     loader = DirectoryLoader(dirctory_path)
     docs = loader.load()
-    print("Successfull loaded Documents: " + len(docs))
+    print("Successfull loaded Documents: " + str(len(docs)))
     return docs
 
 
