@@ -23,18 +23,19 @@ Hier werden wir die Pakete in ein abgeschirmten Umgebung installieren, dem "venv
 
 Nun müssen wir das venv *documentai* im terminal aktivieren.
 ```activate documentai``` (Bei Fehler Terminal neustarten)  
-*Wichtig!* Die KI Applikation wird sich nur in der Konsole ausführen lassen, wenn das Venv aktiv ist!
+(bei Execution Policy Problem: [StackOverflow Solution](https://stackoverflow.com/a/18713789))  
+*Wichtig!* Die KI Applikation wird sich nur in der Konsole ausführen lassen, wenn das Venv (documentai) aktiv ist!
 ![Aktives venv](assets/active_venv.png)  
-(*Alternative*) venv via [VSCode Plugin Python EnvironManager](https://marketplace.visualstudio.com/items?itemName=donjayamanne.python-environment-manager) erstellen & aktivieren  
+(*Alternative*) venv via [VSCode Plugin Python EnvironmentManager](https://marketplace.visualstudio.com/items?itemName=donjayamanne.python-environment-manager) erstellen & aktivieren  
 (*Alternative*) venv via [VSCODE Commands (+ Erklärungen)](https://code.visualstudio.com/docs/python/environments) aktivieren
 
-Installiere benötigte Abhängigkeiten & Pakete mit dem Befehl:
+In dem Venv (documentai) installiere benötigte die Abhängigkeiten & Pakete mit dem Befehl:
 `pip install -r requirements.txt`
 
 Die KI Applikation ist jetzt fast bereit zum ausführen. Es gibt drei Varianten:
 - Azure OpenAI basierte KI Applikation (nutzt GPT-4o-mini - Key gibt es von uns) `python run_ai_azure_open_ai_model.py`
-- OpenAi Playground basierte Ki Applikation (KI Modell von OpenAI - Hier brauchst du einen eigenen Key) `python run_ai_gpt_model.py`
-- Ollama basierte Ki Applikation (*lokales* KI Modell) => `python run_ai_ollama_model.py`
+- OpenAi Playground basierte KI Applikation (KI Modell von OpenAI - Hier brauchst du einen eigenen Key) `python run_ai_gpt_model.py`
+- Ollama basierte KI Applikation (*lokales* KI Modell) => `python run_ai_ollama_model.py`
 
 ### Azure OpenAI KI Applikation
 Das Modell (GPT-4o-mini) läuft in der Cloud von Azure OpenAI. Dieses sprechen wir über eine API an. Damit das Modell genutzt werden kann,
@@ -61,8 +62,8 @@ From [learnprompting.org](https://learnprompting.org/de/docs/basics/embeds)
 **Applikation Starten**: 
 `python run_ai_gpt_model.py`
 
-### Lokales KI-Modelle starten mit Ollama 
-Das Vertrauen in die großen KI Anbietern wie OpenAI ist häufig nicht groß, weil bei KI Interaktionen Daten entstehen, welche wiederum zum trainieren des Modells verwenden können. KI-Modelle kann man auch lokal auf den eigenen Rechner ausführen. 
+### Lokale KI-Modelle starten mit Ollama 
+Das Vertrauen in die großen KI Anbietern wie OpenAI ist häufig nicht groß, weil bei KI Interaktionen Daten entstehen, welche wiederum zum trainieren des Modells verwenden können. KI-Modelle kann man auch lokal auf den eigenen Rechner ausführen. Das funktioniert so:
 
 #### Anforderungen an deinen Computer 
  
@@ -74,7 +75,7 @@ Sonst gilt für kleine Modelle der Größe 7 Mrd. Parameter (7B):
 Ressourcen hunger steigt mit der Größe des Modells. Es gilt Llama3 7B => Kleines Modell, Llama3 70B => großes Modell. 70b steht für 70 Mrd Parameter. Viele Modelle haben eine große und eine kleine Ausführung, wie Llama3 von Meta.
 
 #### Ollama 
-[llama.cpp](https://github.com/ggerganov/llama.cpp) ist ein prominentes Tool um Modelle von der Plattform [HuggingFace](https://huggingface.co) lokal auszuführen (Die Quelle/Community für KI Modelle, idR. Open Source). llama.cpp ist aber nicht Anfänger freundlich, daher verwenden wir [Ollama](https://ollama.com). Die gleiche Technologie, jedoch vereinfachte Installation und Konfiguration. Nachteil wir können nur Moddelle aus dieser [Liste](https://ollama.com/library) installieren.
+[llama.cpp](https://github.com/ggerganov/llama.cpp) ist ein prominentes Tool um Modelle von der Plattform [HuggingFace](https://huggingface.co) lokal auszuführen (Die Quelle für KI Modelle). llama.cpp ist aber nicht Anfänger freundlich, daher verwenden wir [Ollama](https://ollama.com). Die gleiche Technologie, jedoch vereinfachte Installation und Konfiguration. Nachteil wir können nur vorkonfigurierte Modelle aus dieser [Liste](https://ollama.com/library) installieren.
 
 
 1. Install Ollama: https://ollama.com/download 
