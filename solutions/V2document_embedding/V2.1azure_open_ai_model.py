@@ -7,16 +7,16 @@ from dotenv import load_dotenv
 
 from langchain_core.messages import HumanMessage, AIMessage
 from langchain_core.prompts import ChatPromptTemplate
-from langchain_openai import AzureChatOpenAI
+from langchain_openai import AzureChatOpenAI, AzureOpenAIEmbeddings
 
+from langchain_chroma import Chroma
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
-# Ignoriern: Fügt root Ordner für utils zum sys.path hinzu, damit es iportiert werden kann
+# Ignore: Fügt root Ordner für utils zum sys.path hinzu, damit es iportiert werden kann
 currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
 rootdir = os.path.dirname(os.path.dirname(currentdir))
 sys.path.append(rootdir)
-from utils import loadDocumentsFromDirectory  # noqa: E402
-
+from utils import formatDocs, loadDocumentsFromDirectory  # noqa: E402
 
 load_dotenv()
 
@@ -24,6 +24,7 @@ azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
 api_key = os.getenv("AZURE_OPENAI_KEY")
 api_version = os.getenv("AZURE_OPENAI_VERSION")
 deployment_name = os.getenv("AZURE_OPENAI_DEPLOYMENT")
+embeddings_deployment_name = os.getenv("AZURE_OPENAI_EMBEDDINGS_DEPLOYMENT")
 
 llm = AzureChatOpenAI(
     azure_deployment=deployment_name,
@@ -34,6 +35,7 @@ llm = AzureChatOpenAI(
 )
 
 structured_llm = llm.with_structured_output(AIMessage)
+
 
 system_prompt = """
 Bitte antworte mir immer auf deutsch. Bleibe immer höflich und professionell.
@@ -48,19 +50,45 @@ prompt = ChatPromptTemplate.from_messages([("system", system_prompt), ("human", 
 few_shot_structured_llm = prompt | structured_llm
 
 
-## doc_content = loadSingleMarkdownDocument("SOURCE_DOCUMENT/kyros_ii_persia_history.md")
 documents = loadDocumentsFromDirectory("SOURCE_DOCUMENTS")
-#Text Splitter from https://python.langchain.com/v0.2/docs/how_to/recursive_text_splitter/
+
+# Before we transform our Documents into an Vector Store we cut it into pieces for an simplier semantic understandig
+# Text Splitter from https://python.langchain.com/v0.2/docs/how_to/recursive_text_splitter/
 text_splitter = RecursiveCharacterTextSplitter(
     chunk_size=1000,
     chunk_overlap=100,
     length_function=len,
     is_separator_regex=False,
 )
-texts = text_splitter.split_documents(documents)
-print("Successfull splitted Documents. Number of Chunks: " + str(len(texts)))
+doc_pieces = text_splitter.split_documents(documents)
+print("Successfull splitted Documents. Number of Chunks: " + str(len(doc_pieces)))
 
+# Embeddings ist our AI Modell. It will transfer our documents into an semantic Vector interpretation interpretation.
+# A number based vector representation makes easier for the AI to understand semantic similiarity of text Passagen
+# from https://python.langchain.com/docs/how_to/vectorstores/
+embeddings = AzureOpenAIEmbeddings(
+    azure_deployment=embeddings_deployment_name,
+    azure_endpoint=azure_endpoint,
+    api_key=api_key,
+    openai_api_version=api_version)
+    
+# transform our Documents in an vectore store in a chromaDB
+db = Chroma.from_documents(doc_pieces, embeddings)
 
+# query for identify the relevant Documents
+query = "Was hat Kyros II. erobert"
+
+# similiarity search from https://python.langchain.com/docs/how_to/vectorstores/#similarity-search
+docs = db.similarity_search(query)
+
+# We can also transform our Query to an vector interpretation
+# similiarity searchbyVector from https://python.langchain.com/docs/how_to/vectorstores/#similarity-search
+embedding_vector = embeddings.embed_query(query)
+docs_embeded_query = db.similarity_search_by_vector(embedding_vector)
+
+doc_content = formatDocs(docs)
+
+# Gradio client predict functions, will be executed when User submit action in client
 def predict(message, history):
     history_langchain_format = []
     for human, ai in history:
@@ -68,9 +96,10 @@ def predict(message, history):
         history_langchain_format.append(AIMessage(content=ai))
     history_langchain_format.append(HumanMessage(content=message))
     historyWithContext =  {
-        "context": texts.pop(),
+        "context": doc_content,
         "input": history_langchain_format,
     }
+
     print(historyWithContext)
     response = few_shot_structured_llm.invoke(historyWithContext)
     print("User Question: {message}")
