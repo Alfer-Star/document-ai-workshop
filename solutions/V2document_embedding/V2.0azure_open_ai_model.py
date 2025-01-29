@@ -60,7 +60,7 @@ embeddings = AzureOpenAIEmbeddings(
     api_key=api_key,
     openai_api_version=api_version)
 
-# transform our Documents in an vectore store in a chromaDB
+# transform our Documents in an vectore store in a chromaDB while holding a document refence
 db = Chroma.from_documents(documents, embeddings)
 
 # query for identify the relevant Documents

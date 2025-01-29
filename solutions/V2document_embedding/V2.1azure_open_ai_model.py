@@ -72,19 +72,19 @@ embeddings = AzureOpenAIEmbeddings(
     api_key=api_key,
     openai_api_version=api_version)
     
-# transform our Documents in an vectore store in a chromaDB
-db = Chroma.from_documents(doc_pieces, embeddings)
+# transform our Documents in an vectore store in a chromaDB while holding a document refence
+vectorStore = Chroma.from_documents(doc_pieces, embeddings)
 
 # query for identify the relevant Documents
 query = "Was hat Kyros II. erobert"
 
 # similiarity search from https://python.langchain.com/docs/how_to/vectorstores/#similarity-search
-docs = db.similarity_search(query)
+docs = vectorStore.similarity_search(query)
 
 # We can also transform our Query to an vector interpretation
 # similiarity searchbyVector from https://python.langchain.com/docs/how_to/vectorstores/#similarity-search
 embedding_vector = embeddings.embed_query(query)
-docs_embeded_query = db.similarity_search_by_vector(embedding_vector)
+docs_embeded_query = vectorStore.similarity_search_by_vector(embedding_vector)
 
 doc_content = formatDocs(docs)
 
@@ -95,6 +95,7 @@ def predict(message, history):
         history_langchain_format.append(HumanMessage(content=human))
         history_langchain_format.append(AIMessage(content=ai))
     history_langchain_format.append(HumanMessage(content=message))
+
     historyWithContext =  {
         "context": doc_content,
         "input": history_langchain_format,
