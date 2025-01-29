@@ -139,7 +139,7 @@ Und dann wären da noch die [LLM Konfigurations-Hyperparameter](https://learnpro
 Was wir bauen werden nennt man in der Fachsprachen eine RAG Applikation. Eine RAG Applikation ist eine Erweiterung eines vortrainierten KI-Modells, um es für spezifische Aufgaben zu optimieren.
 Bei einer **Retrieval Augmented Generation (RAG)** erweitern wir die bereits massive Wissensbasis des KI Modells, indem wir diesem zusätzliche Informationen bereitstellen. Zu den häufigsten Anwendungsfällen gehört die Ergänzung der KI um eine Suchfunktion in einer Suchmaschine oder die Entwicklung von Unternehmens-ChatBots, die mit den Dokumenten und Daten eines Unternehmens gefüttert werden.
 Wir werden einen solchen ChatBot entwickeln, der mit Daten und Dokumenten des Unternehmens gespeist wird.
-![img_1.png](img_1.png)
+![alt text](assets/img_1.png)
 Das Bild oben veranschaulicht den grundlegenden Ablauf einer RAG Applikation:
 1. Dokumente vorbereiten: Zunächst werden interne Dokumente des Unternehmens in kleine Stücke (Chunks) aufgeteilt.
 2. Erstellung von Embeddings: Diese Chunks werden dann durch ein Embedding-Modell in Vektoren (Embeddings) umgewandelt.
