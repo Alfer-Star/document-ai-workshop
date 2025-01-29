@@ -79,8 +79,21 @@ vectorStore = Chroma.from_documents(doc_pieces, embeddings)
 The Vectorstore offers us a function that creates a retriever.
 The resultig retriever is like creating a function with an prompt as parameter. 
 By Default it performs the similiarity search with the given Prompt and returns relevant documents.
+from https://python.langchain.com/docs/integrations/vectorstores/chroma/
 """
-retriever = vectorStore.as_retriever(search_kwargs={"score_threshold": 0.5, "k":3})
+retriever = vectorStore.as_retriever(search_kwargs={"k":3})
+
+# returns only documents with similarity_score higher than a certein score between (dissimilar)0 and 1(similar)
+retriever_score_threshold = vectorStore.as_retriever(search_type="similarity_score_threshold",
+    search_kwargs={'score_threshold': 0.8})
+
+# using Maximum marginal relevance retrieval
+# The idea behind using MMR is that it tries to reduce redundancy and increase diversity in the result.
+# from https://medium.com/tech-that-works/maximal-marginal-relevance-to-rerank-results-in-unsupervised-keyphrase-extraction-22d95015c7c5
+retriever_mmr = vectorStore.as_retriever(
+    search_type="mmr",
+    search_kwargs={'k': 6, 'lambda_mult': 0.25}
+)
 
 # Gradio client predict functions, will be executed when User submit action in client
 def predict(message, history):
@@ -91,7 +104,9 @@ def predict(message, history):
     history_langchain_format.append(HumanMessage(content=message))
 
     # Retrieve docs relevant to user Input and format it to string
-    doc_content = retriever.invoke(message) | formatDocs
+    retrieved_docs = retriever.invoke(message) 
+    print('Documents Retrieved: '+ str(len(retrieved_docs)))
+    doc_content = formatDocs(retrieved_docs)
 
     historyWithContext =  {
         "context": doc_content  ,

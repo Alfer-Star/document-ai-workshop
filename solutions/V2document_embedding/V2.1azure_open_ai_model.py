@@ -82,7 +82,9 @@ query = "Was hat Kyros II. erobert"
 docs = vectorStore.similarity_search(query)
 
 # We can also transform our Query to an vector interpretation
-# similiarity searchbyVector from https://python.langchain.com/docs/how_to/vectorstores/#similarity-search
+# similiarity searchbyVector 
+# from https://python.langchain.com/docs/how_to/vectorstores/#similarity-search
+# Chroma vectorestore https://python.langchain.com/docs/integrations/vectorstores/chroma/#query-vector-store
 embedding_vector = embeddings.embed_query(query)
 docs_embeded_query = vectorStore.similarity_search_by_vector(embedding_vector)
 
