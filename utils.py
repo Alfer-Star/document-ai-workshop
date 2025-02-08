@@ -2,6 +2,7 @@ from typing import List
 from langchain_community.document_loaders import UnstructuredMarkdownLoader
 from langchain_community.document_loaders import DirectoryLoader
 
+
 def loadGptKey():
     f = open("./my_gpt.key", "r")
     return f.read()
@@ -38,13 +39,12 @@ def formatDocs(doc_list: List):
     """
     doc_content = ""
     for doc in doc_list:
-        title = doc.metadata["file_name"]
+        title = doc.metadata["source"]
         pageContent = doc.page_content
-        doc_content.join(
-            f""" {title}
-            {pageContent}   
+        doc_content += f""" {title}
+            {pageContent}
+   
             """
-        )
     return doc_content
 
 

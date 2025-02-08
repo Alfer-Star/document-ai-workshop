@@ -9,14 +9,14 @@ from langchain_core.messages import HumanMessage, AIMessage
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_openai import AzureChatOpenAI, AzureOpenAIEmbeddings
 
-from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_chroma import Chroma
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 # Ignore: Fügt root Ordner für utils zum sys.path hinzu, damit es iportiert werden kann
 currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
 rootdir = os.path.dirname(os.path.dirname(currentdir))
 sys.path.append(rootdir)
-from utils import loadDocumentsFromDirectory  # noqa: E402
+from utils import formatDocs, loadDocumentsFromDirectory  # noqa: E402
 
 load_dotenv()
 
@@ -52,30 +52,44 @@ few_shot_structured_llm = prompt | structured_llm
 
 documents = loadDocumentsFromDirectory("SOURCE_DOCUMENTS")
 
-#Text Splitter from https://python.langchain.com/v0.2/docs/how_to/recursive_text_splitter/
+# Before we transform our Documents into an Vector Store we cut it into pieces for an simplier semantic understandig
+# Text Splitter from https://python.langchain.com/v0.2/docs/how_to/recursive_text_splitter/
 text_splitter = RecursiveCharacterTextSplitter(
     chunk_size=1000,
     chunk_overlap=100,
     length_function=len,
     is_separator_regex=False,
 )
-texts = text_splitter.split_documents(documents)
-print("Successfull splitted Documents. Number of Chunks: " + len(texts))
+doc_pieces = text_splitter.split_documents(documents)
+print("Successfull splitted Documents. Number of Chunks: " + str(len(doc_pieces)))
 
-# Embeddings and Similiarity Search from https://python.langchain.com/v0.2/docs/how_to/vectorstores/
+# Embeddings ist our AI Modell. It will transfer our documents into an semantic Vector interpretation interpretation.
+# A number based vector representation makes easier for the AI to understand semantic similiarity of text Passagen
+# from https://python.langchain.com/docs/how_to/vectorstores/
 embeddings = AzureOpenAIEmbeddings(
     azure_deployment=embeddings_deployment_name,
-    api_version=api_version,
+    azure_endpoint=azure_endpoint,
     api_key=api_key,
-    openai_api_version=api_version,
-    temperature=1)
+    openai_api_version=api_version)
     
-db = Chroma.from_documents(documents, embeddings)
+# transform our Documents in an vectore store in a chromaDB while holding a document refence
+vectorStore = Chroma.from_documents(doc_pieces, embeddings)
 
-query = "Was hat Kyros II. erobert?"
-docs = db.similarity_search(query)
-doc_content = docs[0].page_content
-print("Successfull created VectorStore. Text with Kyros II. Conquests" + doc_content[:100])
+# query for identify the relevant Documents
+query = "Was hat Kyros II. erobert"
+
+# similiarity search from https://python.langchain.com/docs/how_to/vectorstores/#similarity-search
+docs = vectorStore.similarity_search(query)
+
+# We can also transform our Query to an vector interpretation
+# similiarity searchbyVector 
+# from https://python.langchain.com/docs/how_to/vectorstores/#similarity-search
+# Chroma vectorestore https://python.langchain.com/docs/integrations/vectorstores/chroma/#query-vector-store
+embedding_vector = embeddings.embed_query(query)
+docs_embeded_query = vectorStore.similarity_search_by_vector(embedding_vector)
+
+doc_content = formatDocs(docs)
+
 # Gradio client predict functions, will be executed when User submit action in client
 def predict(message, history):
     history_langchain_format = []
@@ -83,10 +97,12 @@ def predict(message, history):
         history_langchain_format.append(HumanMessage(content=human))
         history_langchain_format.append(AIMessage(content=ai))
     history_langchain_format.append(HumanMessage(content=message))
+
     historyWithContext =  {
         "context": doc_content,
         "input": history_langchain_format,
     }
+
     print(historyWithContext)
     response = few_shot_structured_llm.invoke(historyWithContext)
     print("User Question: {message}")
