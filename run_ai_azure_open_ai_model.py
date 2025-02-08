@@ -30,7 +30,11 @@ Bitte antworte mir immer auf deutsch. Bleibe immer höflich und professionell.
 prompt = ChatPromptTemplate.from_messages([("system", system_prompt), ("human", "{input}")])
 few_shot_structured_llm = prompt | structured_llm
 
-
+""" 
+    Gradio Client Interaction with AI-model Chain
+    Will be executed everytime user submits his question in gradio Client 
+    Includes the current history of the conversation
+"""
 def predict(message, history):
     history_langchain_format = []
     for human, ai in history:
@@ -41,11 +45,12 @@ def predict(message, history):
         "input": history_langchain_format,
     }
 
+    # sends Ai user message and Ai response will be generated
     response = few_shot_structured_llm.invoke(historyWithContext)
     
     #print("User Question: {historyWithContext}")
-    print("User Question: {message}")
-    print("Model Answer: " + response.content)
+    print(f"User Question: {message}")
+    print(f"Model Answer: {response.content}" )
     
     return response.content
 

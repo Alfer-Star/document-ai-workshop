@@ -44,8 +44,8 @@ def predict(message, history):
     response = few_shot_structured_llm.invoke(historyWithContext)
     
     #print("User Question: {historyWithContext}")
-    print("User Question: {message}")
-    print("Model Answer: " + response.content)
+    print(f"User Question: {message}")
+    print(f"Model Answer: {response.content}" )
     
     return response.content
 
