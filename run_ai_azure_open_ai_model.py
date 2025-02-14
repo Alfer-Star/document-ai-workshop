@@ -12,8 +12,6 @@ api_key = os.getenv("AZURE_OPENAI_KEY")
 api_version = os.getenv("AZURE_OPENAI_VERSION")
 deployment_name = os.getenv("AZURE_OPENAI_DEPLOYMENT")
 
-print("API VERSION: " + api_version)
-
 llm = AzureChatOpenAI(
     azure_deployment=deployment_name,
     api_version=api_version,
