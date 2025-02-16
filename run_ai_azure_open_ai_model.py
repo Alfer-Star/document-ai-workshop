@@ -36,13 +36,10 @@ def predict(message, history):
         history_langchain_format.append(HumanMessage(content=human))
         history_langchain_format.append(AIMessage(content=ai))
     history_langchain_format.append(HumanMessage(content=message))
-
-    historyWithContext = {
+    history_with_context = {
         "input": history_langchain_format,
     }
-
-    response = few_shot_structured_llm.invoke(historyWithContext)
-
+    response = few_shot_structured_llm.invoke(history_with_context)
     print(f"User Question: {message}")
     print(f"Model Answer: {response.content}")
     return response.content
