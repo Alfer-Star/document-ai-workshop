@@ -1,14 +1,11 @@
 import os
 import sys
 import inspect
-
 import gradio as gr
 from dotenv import load_dotenv
-
 from langchain_core.messages import HumanMessage, AIMessage
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_openai import AzureChatOpenAI, AzureOpenAIEmbeddings
-
 from langchain_chroma import Chroma
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 
@@ -34,9 +31,6 @@ llm = AzureChatOpenAI(
     temperature=1,
 )
 
-structured_llm = llm.with_structured_output(AIMessage)
-
-
 system_prompt = """
 Bitte antworte mir immer auf deutsch. Bleibe immer höflich und professionell.
 
@@ -47,7 +41,7 @@ Wenn context keine relevanten Informationen zur Frage enthält, erfinde nichts u
 </context>
 """
 prompt = ChatPromptTemplate.from_messages([("system", system_prompt), ("human", "{input}")])
-few_shot_structured_llm = prompt | structured_llm
+few_shot_structured_llm = prompt | llm
 
 
 documents = loadDocumentsFromDirectory("SOURCE_DOCUMENTS")
@@ -98,13 +92,13 @@ def predict(message, history):
         history_langchain_format.append(AIMessage(content=ai))
     history_langchain_format.append(HumanMessage(content=message))
 
-    historyWithContext =  {
+    history_with_context =  {
         "context": doc_content,
         "input": history_langchain_format,
     }
 
-    print(historyWithContext)
-    response = few_shot_structured_llm.invoke(historyWithContext)
+    print(history_with_context)
+    response = few_shot_structured_llm.invoke(history_with_context)
     print(f"User Question: {message}")
     print(f"Model Answer: {response.content}" )
     return response.content
