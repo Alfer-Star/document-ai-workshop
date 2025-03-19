@@ -1,6 +1,8 @@
 from typing import List
 from langchain_community.document_loaders import UnstructuredMarkdownLoader
 from langchain_community.document_loaders import DirectoryLoader
+from langchain_community.tools import WikipediaQueryRun
+from langchain_community.utilities import WikipediaAPIWrapper
 
 
 def loadGptKey():
@@ -46,6 +48,13 @@ def formatDocs(doc_list: List):
    
             """
     return doc_content
+
+""" Load Wikipedia Pages According given Query 
+    Does not work in Unternehmensnetzwerk, would need a proxy
+"""
+def loadWikipediaPages(searchQuery, top_k_results=3):
+    w2 = WikipediaAPIWrapper(lang='de', top_k_results=top_k_results)
+    return w2.load(searchQuery)
 
 
 ## Implement helper functions here, to keep the main code cleaner and simple to read
