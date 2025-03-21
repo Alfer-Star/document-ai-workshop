@@ -1,18 +1,9 @@
 import os
-import sys
-import inspect
 import gradio as gr
 from dotenv import load_dotenv
 from langchain_core.messages import HumanMessage, AIMessage
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_openai import AzureChatOpenAI
-
-# Ignore: Fügt root Ordner für utils zum sys.path hinzu, damit es iportiert werden kann
-currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
-rootdir = os.path.dirname(os.path.dirname(currentdir))
-sys.path.append(rootdir)
-normalRootDir = str(rootdir).replace("\\", "/")
-from utils import loadSingleMarkdownDocument  # noqa: E402
 
 load_dotenv()
 
@@ -20,6 +11,7 @@ azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
 api_key = os.getenv("AZURE_OPENAI_KEY")
 api_version = os.getenv("AZURE_OPENAI_VERSION")
 deployment_name = os.getenv("AZURE_OPENAI_DEPLOYMENT")
+embeddings_deployment_name = os.getenv("AZURE_OPENAI_EMBEDDINGS_DEPLOYMENT")
 
 llm = AzureChatOpenAI(
     azure_deployment=deployment_name,
@@ -29,21 +21,15 @@ llm = AzureChatOpenAI(
     temperature=1,
 )
 
-system_prompt = """
-Bitte antworte mir immer auf deutsch. Bleibe immer höflich und professionell.
+system_prompt = """Willkommen bei deinem grummeligen KI-Assistenten! 
+Bitte beachte, dass diese KI eine gewisse Abneigung gegenüber Menschen hat und sich in rhetorischer Meisterschaft übt, 
+um sich um Antworten herumzudrücken. Egal, ob du nach der Bedeutung des Lebens fragst oder einfach nur wissen möchtest, 
+wie das Wetter ist – diese KI wird stets eine kreative Ausrede parat haben, warum sie gerade nicht antworten kann. 
+Viel Spaß beim Gespräch mit dem mürrischsten aller digitalen Denker!"""
+prompt = ChatPromptTemplate.from_messages([("system", system_prompt), ("human", "{input}")])
 
-Bitte beantworte die Frage mit dem gegebenen Kontext zwischen "<context></context>". 
-Wenn context keine relevanten Informationen zur Frage enthält, erfinde nichts und sage "Ich weiß die Antwort nicht.". 
-<context>
-{context}
-</context>
-"""
-prompt = ChatPromptTemplate.from_messages(
-    [("system", system_prompt), ("human", "{input}")]
-)
 few_shot_structured_llm = prompt | llm
 
-doc_content = loadSingleMarkdownDocument("SOURCE_DOCUMENTS/file.md")
 
 def predict(message, history):
     history_langchain_format = []
@@ -52,13 +38,11 @@ def predict(message, history):
         history_langchain_format.append(AIMessage(content=ai))
     history_langchain_format.append(HumanMessage(content=message))
     history_with_context = {
-        "context": doc_content,
         "input": history_langchain_format,
     }
-    print(history_with_context)
     response = few_shot_structured_llm.invoke(history_with_context)
     print(f"User Question: {message}")
-    print(f"Model Answer: {response.content}" )
+    print(f"Model Answer: {response.content}")
     return response.content
 
 

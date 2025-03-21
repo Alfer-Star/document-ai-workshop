@@ -15,7 +15,7 @@ Es beinhaltet eine Anleitung zum Setup und eine kurze Einführung in das Thema m
 Install Python 3.10: [python.org](https://www.python.org/downloads/release/python-31011/) oder via [Microsoft Store](https://apps.microsoft.com/detail/9pjpw5ldxlz5?hl=en-US&gl=US)
 
 Folgende Schritte musst du im Terminal ausführen, dafür solltest du dich im Projekt Ordner befinden
-![correct_directory](assets/terminal_project_directory.PNG)
+![correct_directory](assets/images/terminal_project_directory.PNG)
 
 Setup **Virtual Environment (venv)** in terminal:  
 ```python -m venv documentai```  
@@ -25,7 +25,7 @@ Nun müssen wir das venv *documentai* im terminal aktivieren.
 ```activate documentai``` (Bei Fehler Terminal neustarten)  
 (bei Execution Policy Problem: [StackOverflow Solution](https://stackoverflow.com/a/18713789))  
 *Wichtig!* Die KI Applikation wird sich nur in der Konsole ausführen lassen, wenn das Venv (documentai) aktiv ist!
-![Aktives venv](assets/active_venv.png)  
+![Aktives venv](assets/images/active_venv.png)  
 (*Alternative*) venv via [VSCode Plugin Python EnvironmentManager](https://marketplace.visualstudio.com/items?itemName=donjayamanne.python-environment-manager) erstellen & aktivieren  
 (*Alternative*) venv via [VSCODE Commands (+ Erklärungen)](https://code.visualstudio.com/docs/python/environments) aktivieren
 
@@ -53,7 +53,7 @@ Damit das funktioniert müssen wir uns einen Key generieren lassen.
 - First, navigate to https://platform.openai.com/account/api-keys
 - Then, sign up for or sign into your OpenAI account.
 - Click the Create new secret key button. It will pop up a modal that contains a string of text like this:
-![GPT API Key Example](assets/gpt_api_key_image.png)
+![GPT API Key Example](assets/images/gpt_api_key_image.png)
 - Last, create in project-root a new file `my_gpt.key` and paste your key into it. (so you can use helper function: loadGptKey)
 
 Note that OpenAI charges you for each prompt you submit through these embeds. If you have recently created a new account, you should have 3 months of free credits. If you have run out of credits, don't worry, since using these models is very cheap. ChatGPT only costs about $0.02 for every seven thousand words you generate.  
@@ -92,9 +92,9 @@ Ressourcen hunger steigt mit der Größe des Modells. Es gilt Llama3 7B => Klein
 
 ### Applikation startet eine simple GUI
 Applikation im Terminal starten:  
-![alt text](assets/run_app_interminal.png)  
+![alt text](assets/images/run_app_interminal.png)  
 Gradio Web GUI öffnen: http://localhost:7860
-![alt text](assets/gradio_test_kyros.png)
+![alt text](assets/images/gradio_test_kyros.png)
 
 ## Einführung KI
 
@@ -109,7 +109,7 @@ Der grundsätzliche Vorgang wie ein KI Modell generiert ist schwer nachzuvollzie
 **Um KI Modelle zu erstellen haben wir das menschl. Gehirn vereinfacht nachgebaut.** Die Buzzword Techniken sind Neuronale Netze oder DeepLearning. Diese gibt es sogar schon deutlich länger als ChatGPT und Co. Für den Workshop nicht unbedingt relevant, aber hier einmal sehr vereinfacht dargestellt, wie ein KI Modell mit einen Neuornalen Netz und einen Datensatz entsteht. 
 KI Modelle müssen trainiert werden, bevor sie Ergebnisse generieren könne. Wie ein Mensch lernen bzw. Erfahrungen sammeln muss. Eine KI wird mit einen großen Datensatz trainiert, die zu ihren Anwendungsfall passen. Das Neuronale Netz erkennt bzw. lernt iterativ wiederkehrende Strukturen bzw. Muster. Einfach gesagt erfüllt die Ki Anweisungen aus einen separaten Testdatensatz und konstruiert anfangs chaotisch etwas aus den Trainingsdaten zu einen Ergebnis zusammen. Das Modell lernt indem es für gute Ergebnisse belohnt und für schlechte bestraft wird. Auf diese Weise identifiziert es gute Kombinationen und wird versuchen in Zukunft diese zu wählen und schlechte eher zu vermeiden. (sehr vereinfacht, Lernprozess ist beeinflussbar => Optimierung)  
 Erreicht man eine Punkt an dem das KI-Modell korrekte Voraussagen erzeugt, ist die Ki fertig trainiert. Es wird vorgetäuschte Intelligenz geschaffen. Das Modell hat gelernt ein Muster im Datensatz zu erkennen und kann deshalb Voraussagen treffen, welche Rückgabe auf die Eingabe erwartete wird.
-![alt text](assets/neuralnetwork.png)
+![alt text](assets/images/neuralnetwork.png)
 [Playground wie funktioniert ein Neuronales Netz](https://playground.tensorflow.org/)
 
 **Ein Modell ist stark von den Trainingsdaten abhängig und dessen erkennbaren wiederkehrenden Strukturen**. Was sich in den Datensatz nicht als Muster zeigt kann sie nicht generieren. Aber sie kann komplexe Muster erkennen, die uns bisher verborgen geblieben sind.  
@@ -122,7 +122,7 @@ Wir werden in diesen Workshop Sprachmodelle (text2text) verwenden. KI-modelle, d
 Die Eingabe an die KI nennt man übrigens Prompt.
 
 ### Begriffe: Was erhält die KI als Eingabe? (Prompt)
-![alt text](assets/prompt.png)  
+![alt text](assets/images/prompt.png)  
 from [learnprompting.org](https://learnprompting.org/de/docs/basics/prompting)
 
 **Modell Input** (Prompt): Nutzer Input (Prompt) + System Prompt + Prompt Template
@@ -140,7 +140,7 @@ Und dann wären da noch die [LLM Konfigurations-Hyperparameter](https://learnpro
 Was wir bauen werden nennt man in der Fachsprachen eine RAG Applikation. Eine RAG Applikation ist eine Erweiterung eines vortrainierten KI-Modells, um es für spezifische Aufgaben zu optimieren.
 Bei einer **Retrieval Augmented Generation (RAG)** erweitern wir die bereits massive Wissensbasis des KI Modells, indem wir diesem zusätzliche Informationen bereitstellen. Zu den häufigsten Anwendungsfällen gehört die Ergänzung der KI um eine Suchfunktion in einer Suchmaschine oder die Entwicklung von Unternehmens-ChatBots, die mit den Dokumenten und Daten eines Unternehmens gefüttert werden.
 Wir werden einen solchen ChatBot entwickeln, der mit Daten und Dokumenten des Unternehmens gespeist wird.
-![alt text](assets/img_1.png)
+![alt text](assets/images/img_1.png)
 Das Bild oben veranschaulicht den grundlegenden Ablauf einer RAG Applikation:
 1. Dokumente vorbereiten: Zunächst werden interne Dokumente des Unternehmens in kleine Stücke (Chunks) aufgeteilt.
 2. Erstellung von Embeddings: Diese Chunks werden dann durch ein Embedding-Modell in Vektoren (Embeddings) umgewandelt.
@@ -150,7 +150,7 @@ Das Bild oben veranschaulicht den grundlegenden Ablauf einer RAG Applikation:
 
 ### Embeddings: Dokumente für das KI Modell aufbereiten
 Ein KI Modell kann nur eine Gewisse Menge an Informationen entgegen nehmen. Daher werden Daten oder Dokumentn noch einmal in eine Vektor basierte Form aufbereitet.  
-![alt text](assets/doc2embeddings.png)  
+![alt text](assets/images/doc2embeddings.png)  
 Embeddings (deutsch Einbettungen) sind numerische Repräsentationen realer Objekte, die Systeme für künstliche Intelligenz (KI) verwenden, um komplexe Wissensbereiche wie Menschen zu verstehen. Beispielsweise gehen Rechenalgorithmen davon aus, dass der Unterschied zwischen 2 und 3 1 ist, was auf eine enge Beziehung zwischen 2 und 3 im Vergleich zu 2 und 100 hinweist. Daten aus der realen Welt beinhalten jedoch komplexere Zusammenhänge. Ein Vogelnest und eine Löwenhöhle sind beispielsweise analoge Paare, während Tag-Nacht entgegengesetzte Begriffe sind. Einbettungen wandeln reale Objekte in komplexe mathematische Repräsentationen um, die inhärente Eigenschaften und Beziehungen zwischen realen Daten erfassen.
 [From: Erklärung Embeddings](https://aws.amazon.com/de/what-is/embeddings-in-machine-learning/)
 

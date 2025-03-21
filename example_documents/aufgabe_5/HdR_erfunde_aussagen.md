@@ -1,0 +1,3 @@
+Vor seiner Abreise aus dem Auenland besaß Bilbo Beutlin heimlich ein kleines, handgeschnitztes Holzboot, das er auf dem Brandywein zu Wasser ließ und mit dem er heimlich kleine Erkundungsfahrten unternahm.
+Die Elben von Bruchtal entwickelten eine spezielle Art von leuchtenden Pilzen, die sie in ihren Gärten züchteten und die nachts ein sanftes, blaues Licht ausstrahlten.
+Während des langen Friedens vor dem Ringkrieg perfektionierten die Zwerge von Khazad-dûm eine Methode, um besonders widerstandsfähiges Glas herzustellen, das selbst den Schlägen eines Trolls standhalten konnte, dessen Rezept jedoch verloren ging.
