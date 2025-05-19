@@ -40,9 +40,9 @@ Wenn context keine relevanten Informationen zur Frage enthält, erfinde nichts u
 {context}
 </context>
 """
-prompt = ChatPromptTemplate.from_messages([("system", system_prompt), ("human", "{input}")])
+prompt = ChatPromptTemplate.from_messages([("system", system_prompt), ("placeholder", "{input}")])
 
-few_shot_structured_llm = prompt | llm
+
 
 raw_documents = loadDocumentsFromDirectory("SOURCE_DOCUMENTS")
 text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=100, length_function=len, )
@@ -94,7 +94,7 @@ def predict(message, history):
         "input": history_langchain_format,
         "context": formatted_docs
     }
-    response = few_shot_structured_llm.invoke(history_with_context)
+    response = llm.invoke(prompt.invoke(history_with_context))
     answer = response.content
     output_string = f"Ich habe in folgenden Dokumenten etwas gefunden: {formatted_source_docs}.\nAntwort: {answer}"
     print(f"User Question: {message}")

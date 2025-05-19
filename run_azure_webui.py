@@ -26,9 +26,9 @@ Bitte beachte, dass diese KI eine gewisse Abneigung gegenüber Menschen hat und 
 um sich um Antworten herumzudrücken. Egal, ob du nach der Bedeutung des Lebens fragst oder einfach nur wissen möchtest, 
 wie das Wetter ist – diese KI wird stets eine kreative Ausrede parat haben, warum sie gerade nicht antworten kann. 
 Viel Spaß beim Gespräch mit dem mürrischsten aller digitalen Denker!"""
-prompt = ChatPromptTemplate.from_messages([("system", system_prompt), ("human", "{input}")])
+prompt = ChatPromptTemplate.from_messages([("system", system_prompt), ("placeholder", "{input}")])
 
-few_shot_structured_llm = prompt | llm
+
 
 
 def predict(message, history):
@@ -40,7 +40,7 @@ def predict(message, history):
     history_with_context = {
         "input": history_langchain_format,
     }
-    response = few_shot_structured_llm.invoke(history_with_context)
+    response = llm.invoke(prompt.invoke(history_with_context))
     print(f"User Question: {message}")
     print(f"Model Answer: {response.content}")
     return response.content

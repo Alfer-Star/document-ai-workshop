@@ -34,7 +34,7 @@ Question: Who was the first King of Persia?
 Answer: The first King and founder of Persia was Kyros II.
 """
 
-prompt = ChatPromptTemplate.from_messages([("system", system_prompt), ("human", "{input}")])
+prompt = ChatPromptTemplate.from_messages([("system", system_prompt), ("placeholder", "{input}")])
 
 few_shot_structured_llm = prompt | structured_llm
 

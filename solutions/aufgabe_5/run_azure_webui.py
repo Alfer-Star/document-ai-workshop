@@ -48,9 +48,9 @@ Gehe auf Details ein und berücksichtige alle Aspekte des Universums.
 Sei bereit, auch komplexe Fragen zu beantworten, insbesondere wenn die Antwort in context enthalten sein könnte.
 Wenn du eine Frage nicht beantworten kannst, weder mit dem bereitgestellten Material noch mit deinem allgemeinen Wissen, gib das offen zu.
 """
-prompt = ChatPromptTemplate.from_messages([("system", system_prompt), ("human", "{input}")])
+prompt = ChatPromptTemplate.from_messages([("system", system_prompt), ("placeholder", "{input}")])
 
-few_shot_structured_llm = prompt | llm
+
 
 documents = loadDocumentsFromDirectory("SOURCE_DOCUMENTS")
 
@@ -91,7 +91,7 @@ def predict(message, history):
         "context": formatDocs(docs),
         "input": history_langchain_format,
     }
-    response = few_shot_structured_llm.invoke(history_with_context)
+    response = llm.invoke(prompt.invoke(history_with_context))
     print(f"User Question: {message}")
     print(f"Model Answer: {response.content}")
     return response.content

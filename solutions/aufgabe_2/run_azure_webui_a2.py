@@ -48,9 +48,9 @@ Wenn du eine Frage nicht beantworten kannst, weder mit dem bereitgestellten Mate
 
 Jetzt beantworte die Frage des Nutzers.
 """
-prompt = ChatPromptTemplate.from_messages([("system", system_prompt), ("human", "{input}")])
+prompt = ChatPromptTemplate.from_messages([("system", system_prompt), ("placeholder", "{input}")])
 
-few_shot_structured_llm = prompt | llm
+
 
 # Aufgabe 2: Lade hier das Dokument "SOURCE_DOCUMENTS\HP_erfundene_aussagen.md"
 
@@ -68,7 +68,7 @@ def predict(message, history):
         "input": history_langchain_format,
     }
     
-    response = few_shot_structured_llm.invoke(history_with_context)
+    response = llm.invoke(prompt.invoke(history_with_context))
     print(f"User Question: {message}")
     print(f"Model Answer: {response.content}")
     return response.content

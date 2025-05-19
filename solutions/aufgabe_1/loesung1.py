@@ -38,10 +38,7 @@ Frage: Was sind die Vorteile von DDR5-RAM gegenüber DDR4?
 Antwort: DDR5-RAM bietet höhere Datenübertragungsraten und eine erhöhte Speicherkapazität pro Modul im Vergleich zu DDR4, was insgesamt zu besserer Performance und Effizienz im Speicher-Subsystem führt.
 
 Aktuell erhällst du noch keine Dokumente, deshalb hast du noch keine Informatioen nutze daher dein Allgemeines Wissen."""
-prompt = ChatPromptTemplate.from_messages([("system", system_prompt), ("human", "{input}")])
-
-few_shot_structured_llm = prompt | llm
-
+prompt = ChatPromptTemplate.from_messages([("system", system_prompt), ("placeholder", "{input}")])
 
 def predict(message, history):
     history_langchain_format = []
@@ -52,7 +49,7 @@ def predict(message, history):
     history_with_context = {
         "input": history_langchain_format,
     }
-    response = few_shot_structured_llm.invoke(history_with_context)
+    response = llm.invoke(prompt.invoke(history_with_context))
     print(f"User Question: {message}")
     print(f"Model Answer: {response.content}")
     return response.content
