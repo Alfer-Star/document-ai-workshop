@@ -77,9 +77,9 @@ doc_content = formatDocs(docs)
 def predict(message, history):
     history_langchain_format = []
     for human, ai in history:
-        history_langchain_format.append(HumanMessage(content=human))
-        history_langchain_format.append(AIMessage(content=ai))
-    history_langchain_format.append(HumanMessage(content=message))
+        history_langchain_format.append(('human', human))
+        history_langchain_format.append(('ai', ai))
+    history_langchain_format.append('human', human)
     history_with_context = {
         "context": doc_content,
         "input": history_langchain_format,

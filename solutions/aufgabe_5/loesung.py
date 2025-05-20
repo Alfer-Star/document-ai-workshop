@@ -101,9 +101,9 @@ retriever_mmr = vectorStore.as_retriever(
 def predict(message, history):
     history_langchain_format = []
     for human, ai in history:
-        history_langchain_format.append(HumanMessage(content=human))
-        history_langchain_format.append(AIMessage(content=ai))
-    history_langchain_format.append(HumanMessage(content=message))
+        history_langchain_format.append(('human', human))
+        history_langchain_format.append(('ai', ai))
+    history_langchain_format.append('human', human)
 
     # Retrieve docs relevant to user Input and format it to string
     retrieved_docs = retriever.invoke(message)

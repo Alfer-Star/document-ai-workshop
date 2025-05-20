@@ -45,9 +45,9 @@ def predict(message, history):
 
     history_langchain_format = []
     for human, ai in history:
-        history_langchain_format.append(HumanMessage(content=human))
-        history_langchain_format.append(AIMessage(content=ai))
-    history_langchain_format.append(HumanMessage(content=message))
+        history_langchain_format.append(('human', human))
+        history_langchain_format.append(('ai', ai))
+    history_langchain_format.append('human', human)
     gpt_response = few_shot_structured_llm.invoke(history_langchain_format)
     #gpt_response = llm(history_langchain_format) # ask model directly
     print("User Question: {message}")
