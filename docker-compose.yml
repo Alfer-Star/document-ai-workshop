@@ -1,0 +1,15 @@
+version: '3.8'
+services:
+  azure-webui:
+    build: .
+    ports:
+      - "7860:7860"
+    environment:
+      - AZURE_OPENAI_ENDPOINT=${AZURE_OPENAI_ENDPOINT}
+      - AZURE_OPENAI_KEY=${AZURE_OPENAI_KEY}
+      - AZURE_OPENAI_VERSION=${AZURE_OPENAI_VERSION}
+      - AZURE_OPENAI_DEPLOYMENT=${AZURE_OPENAI_DEPLOYMENT}
+      - AZURE_OPENAI_EMBEDDINGS_DEPLOYMENT=${AZURE_OPENAI_EMBEDDINGS_DEPLOYMENT}
+    volumes:
+      - ./example_documents:/app/example_documents
+      - ./SOURCE_DOCUMENTS:/app/SOURCE_DOCUMENTS 
