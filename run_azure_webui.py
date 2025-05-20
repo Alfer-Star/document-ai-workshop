@@ -37,7 +37,7 @@ def predict(message, history):
         history_langchain_format.append(('human', human))
         history_langchain_format.append(('ai', ai))
 
-    history_langchain_format.append('human', human)
+    history_langchain_format.append(('human', message))
     history_with_context = {
         "input": history_langchain_format,
     }

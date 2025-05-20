@@ -75,7 +75,6 @@ vectorStore = Chroma.from_documents(doc_pieces, embeddings)
 # Aufgabe 5: Entferne die statische similarity_search und erzueg einen Retriever aus dem VectorStore
 
 query = "Bitte gebe mir nur Dokumente zurück, die etwas mit Harry Potter zu tun haben."
-
 docs = vectorStore.similarity_search(query)
 print(f"Anzahl der Dokumente nach Similarity Search: {len(docs)}")
 
